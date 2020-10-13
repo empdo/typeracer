@@ -1,4 +1,4 @@
-var code = '(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()'
+var code = 'var html = hastUtilToHtml({type: "root", children: light.value});'
 
 var light = lowlight.highlight('js', code)
 
@@ -12,3 +12,7 @@ console.log(html);*/
 var html = hastUtilToHtml({type: 'root', children: light.value});
 console.log(html);
 document.write(html);
+
+function positionIndex() {
+
+}
