@@ -1,4 +1,4 @@
-var code = 'var html = hastUtilToHtml({type: "root", children: light.value});'
+var code = 'function positionIndex()'
 
 var light = lowlight.highlight('js', code)
 
