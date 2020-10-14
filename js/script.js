@@ -54,7 +54,7 @@ function compareInput() {
 }
 
 function displayText() {
-  //göra om typedtest till en formatad string, gör en för de man skrivit, en man inte skrivit och en för det man håller på att skriva
+  //göra en till funktion för att sätta ut det ordet man är på, den funktionen kan då sköta att varje bokstav så att man inte anävnder lowlight flör varje bpokstav
   var typedText = typedWords.join(" ");
 
   var light = lowlight.highlight("js", typedText);
