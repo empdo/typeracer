@@ -1,7 +1,10 @@
+var hlTypedText;
+
 const input = document.querySelector(".input-field");
 input.value = "";
 
-var code = "var hlTypedText = hastUtilToHtml({ type: 'root', children: light.value });";
+var code =
+  "var hlTypedText = hastUtilToHtml({ type: 'root', children: light.value });";
 
 function validateWord() {
   var textSaker = code.split(" ");
@@ -24,14 +27,15 @@ function handleInput(e) {
    * @type {String}
    */
   var inputStr = e.target.value;
-  // Also check if was correct before going to next word
   if (inputStr.includes(" ")) {
     typedWords.push(inputStr.slice(0, -1));
     if (compareInput()) {
       input.value = "";
-      displayText();
+      displayText(true);
     }
     console.log(typedWords);
+  } else {
+    displayText(false, input.value);
   }
 }
 
@@ -53,19 +57,30 @@ function compareInput() {
   }
 }
 
-function displayText() {
-  //göra en till funktion för att sätta ut det ordet man är på, den funktionen kan då sköta att varje bokstav så att man inte anävnder lowlight flör varje bpokstav
+function displayText(completedWord, input) {
   var typedText = typedWords.join(" ");
+  var currentword;
 
-  var light = lowlight.highlight("js", typedText);
-  console.log(light.value);
-  var hlTypedText = hastUtilToHtml({ type: "root", children: light.value });
+  if (input == null) {
+    input = "";
+  }
 
-  var remainingText = code.slice(typedText.length); 
+  if (completedWord) {
+    var light = lowlight.highlight("js", typedText);
+    hlTypedText = hastUtilToHtml({ type: "root", children: light.value });
+    currentword = "";
+  } else {
+    currentword = document.createElement("span");
+    currentword.classList.add("wrongLetter");
+    currentword.textContent = input;
+  }
 
-  document.querySelector(".text-field").innerHTML = hlTypedText + remainingText;
+  var remainingText = code.slice(typedText.length + input.length);
+  var textField = document.querySelector(".text-field");
+  textField.innerHTML = hlTypedText + remainingText;
+  textField.insertBefore(currentword, textField.lastChild);
+  console.log(typedText.length + input.length);
 }
 
-
-displayText();
+displayText(true);
 validateWord();

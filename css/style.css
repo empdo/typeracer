@@ -4,3 +4,12 @@ body{
 
     font-family: 'Source Code Pro', monospace;
 }
+
+.correctLetter {
+    color: #206600;
+}
+
+.wrongLetter {
+    color: white;
+    background-color: darkred;
+}
