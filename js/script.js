@@ -61,11 +61,12 @@ function displayText(completedWord, input) {
   }
 
   if (completedWord) {
-    var light = lowlight.highlight("js", typedText);
-    hlTypedText.innerHTML = hastUtilToHtml({
+    var light = lowlight.highlight("js", typedText +" ");
+    hlTypedText.innerHTML = (hastUtilToHtml({
       type: "root",
       children: light.value,
-    });
+    }));
+    currentword.textContent = " ";
   } else {
     currentword.classList.add("wrongLetter");
     currentword.textContent = input;
@@ -81,11 +82,11 @@ function displayText(completedWord, input) {
   textField.appendChild(currentword);
   textField.appendChild(remainingText);
   
-  console.log(typedText.length + input.length);
+  console.log(textField.innerHTML);
 }
 
 var inputElement = document.querySelector(".input-field");
 inputElement.value = "";
 inputElement.addEventListener("input", handleInput);
 
-displayText(true);
+displayText(true); // gör om displayText för den är skit och helt jälva piss
