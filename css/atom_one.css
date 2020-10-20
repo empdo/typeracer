@@ -3,8 +3,12 @@
     display: block;
     overflow-x: auto;
     padding: 0.5em;
-    color: #abb2bf;
+    color: #6294f0;
     background: #282c34;
+}
+
+.hljs-params {
+    color: rgb(78, 78, 161);
 }
 
 .hljs-comment,

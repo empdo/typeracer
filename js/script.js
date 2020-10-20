@@ -1,7 +1,7 @@
 "use strict";
 
 var code =
-"var hlTypedText = hastUtilToHtml({ type: 'root', children: light.value });";
+"function displayText(completedWord, input)";
 
 /**
  * @type {String[]}
@@ -40,11 +40,19 @@ function compareInput() {
   var currentWordIndex = typedWords.length - 1;
   var textToCompare = typedWords[currentWordIndex];
 
-  if (codeWords[currentWordIndex] === textToCompare) {
+  if (codeWords[currentWordIndex] == textToCompare) {
     return true;
   } else {
     typedWords.pop(currentWordIndex);
     return false;
+  }
+}
+
+function checkLetter(letter, letterIndex) {
+  if (letter === codeWords[typedWords.length][letterIndex]){
+    return("correctLetter");
+  } else {
+    return("incorrectLetter");
   }
 }
 
@@ -68,7 +76,7 @@ function displayText(completedWord, input) {
     }));
     currentword.textContent = " ";
   } else {
-    currentword.classList.add("wrongLetter");
+    currentword.classList.add(checkLetter(input[input.length -1], input.length -1));
     currentword.textContent = input;
   }
 
