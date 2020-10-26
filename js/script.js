@@ -24,6 +24,8 @@ function handleInput(e) {
     if (compareInput()) {
       e.target.value = "";
       displayText(true);
+    }else {
+      displayText(false, e.target.value);
     }
     console.log(typedWords);
   } else {
@@ -69,7 +71,7 @@ function displayText(completedWord, input) {
   }
 
   if (completedWord) {
-    var light = lowlight.highlight("js", typedText +" ");
+    var light = lowlight.highlight("js", typedText + " ");
     hlTypedText.innerHTML = (hastUtilToHtml({
       type: "root",
       children: light.value,
