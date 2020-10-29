@@ -1,7 +1,7 @@
 "use strict";
 
 var code =
-"var hlTypedText = hastUtilToHtml({ type: 'root', children: light.value });";
+"function displayText(completedWord, input)";
 
 /**
  * @type {String[]}
@@ -9,6 +9,8 @@ var code =
 var typedWords = [];
 var codeWords = code.split(" ");
 var hlTypedText = document.createElement("span");
+
+var incorectLetters = [];
 
 /**
  * Function to handle input event
@@ -24,6 +26,8 @@ function handleInput(e) {
     if (compareInput()) {
       e.target.value = "";
       displayText(true);
+    }else {
+      displayText(false, e.target.value);
     }
     console.log(typedWords);
   } else {
@@ -40,11 +44,20 @@ function compareInput() {
   var currentWordIndex = typedWords.length - 1;
   var textToCompare = typedWords[currentWordIndex];
 
-  if (codeWords[currentWordIndex] === textToCompare) {
+  if (codeWords[currentWordIndex] == textToCompare) {
     return true;
   } else {
     typedWords.pop(currentWordIndex);
     return false;
+  }
+}
+
+function checkLetter(letter, letterIndex) {
+  if (letter === codeWords[typedWords.length][letterIndex] && incorectLetters.length === 0){
+    return("correctLetter");
+  } else {
+    incorectLetters.push(letter, letterIndex);
+    return("incorrectLetter");
   }
 }
 
@@ -61,14 +74,14 @@ function displayText(completedWord, input) {
   }
 
   if (completedWord) {
-    var light = lowlight.highlight("js", typedText +" ");
+    var light = lowlight.highlight("js", typedText + " ");
     hlTypedText.innerHTML = (hastUtilToHtml({
       type: "root",
       children: light.value,
     }));
     currentword.textContent = " ";
   } else {
-    currentword.classList.add("wrongLetter");
+    currentword.classList.add(checkLetter(input[input.length -1], input.length -1));
     currentword.textContent = input;
   }
 
