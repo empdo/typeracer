@@ -30,23 +30,29 @@ function handleInput(e) {
   }
   
   if (e.target.value.length < tmpInputValue.length) {
-    removedLetter = (compareStr(e.target.value, tmpInputValue).slice(0, 2));
+    removedLetter = (compareStr(e.target.value, tmpInputValue).slice(0,2));
+    console.log(e.target.value, tmpInputValue)
 
-    //for
+    incorectLetters.forEach(e => {
+      if(removedLetter == e) {
+        incorectLetters.pop(e);
+        console.log(incorectLetters);
+      }
+    }
+    );
 
   }
+
   tmpInputValue = e.target.value;
-  
   displayText(false, e.target.value);
 }
 
 function compareStr(str1, str2){
-  console.log("ja")
   var diffrence=[];
   var str2Split = str2.split('');
   str2Split.forEach((e, i) => {
     if (e != str1[i]){
-      diffrence.push(e, i)
+      diffrence.push((e + i).toString());
     }
   });
   return(diffrence);
@@ -70,10 +76,10 @@ function compareInput() {
 }
 
 function checkLetter(letter, letterIndex) {
-  if (letter === codeWords[typedWords.length][letterIndex]){
+  if (letter === codeWords[typedWords.length][letterIndex] && incorectLetters.length === 0){
     return("correctLetter");
   } else {
-    incorectLetters.push(letter, letterIndex)
+    incorectLetters.push((letter + letterIndex).toString());
     return("incorrectLetter");
   }
 }
@@ -97,6 +103,7 @@ function displayText(completedWord, input) {
       children: light.value,
     }));
     currentword.textContent = " ";
+    tmpInputValue = "";
   } else {
     currentword.classList.add(checkLetter(input[input.length -1], input.length -1));
     currentword.textContent = input;
