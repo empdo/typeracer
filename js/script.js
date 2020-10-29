@@ -11,28 +11,45 @@ var codeWords = code.split(" ");
 var hlTypedText = document.createElement("span");
 
 var incorectLetters = [];
+var tmpInputValue = "";
+var removedLetter = []
 
 /**
  * Function to handle input event
  * @param {InputEvent} e
  */
 function handleInput(e) {
-  /**
-   * @type {String}
-   */
+
   var inputStr = e.target.value;
   if (inputStr.includes(" ")) {
     typedWords.push(inputStr.slice(0, -1));
     if (compareInput()) {
       e.target.value = "";
       displayText(true);
-    }else {
-      displayText(false, e.target.value);
     }
-    console.log(typedWords);
-  } else {
-    displayText(false, e.target.value);
   }
+  
+  if (e.target.value.length < tmpInputValue.length) {
+    removedLetter = (compareStr(e.target.value, tmpInputValue).slice(0, 2));
+
+    //for
+
+  }
+  tmpInputValue = e.target.value;
+  
+  displayText(false, e.target.value);
+}
+
+function compareStr(str1, str2){
+  console.log("ja")
+  var diffrence=[];
+  var str2Split = str2.split('');
+  str2Split.forEach((e, i) => {
+    if (e != str1[i]){
+      diffrence.push(e, i)
+    }
+  });
+  return(diffrence);
 }
 
 /**
@@ -53,10 +70,10 @@ function compareInput() {
 }
 
 function checkLetter(letter, letterIndex) {
-  if (letter === codeWords[typedWords.length][letterIndex] && incorectLetters.length === 0){
+  if (letter === codeWords[typedWords.length][letterIndex]){
     return("correctLetter");
   } else {
-    incorectLetters.push(letter, letterIndex);
+    incorectLetters.push(letter, letterIndex)
     return("incorrectLetter");
   }
 }
@@ -95,11 +112,17 @@ function displayText(completedWord, input) {
   textField.appendChild(currentword);
   textField.appendChild(remainingText);
   
-  console.log(textField.innerHTML);
+  //console.log(textField.innerHTML);
 }
 
 var inputElement = document.querySelector(".input-field");
 inputElement.value = "";
-inputElement.addEventListener("input", handleInput);
+// inputElement.addEventListener('keydown', (e) => {
+//   handleKeyDown(e)
+// });
+inputElement.addEventListener("input", (e) => {
+  handleInput(e)
+});
+
 
 displayText(true); // gör om displayText för den är skit och helt jälva piss
