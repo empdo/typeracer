@@ -18,20 +18,6 @@ var removedLetter = [];
  * @param {InputEvent} e
  */
 function handleInput(e) {
-  var temp = [];
-
-  if (true) {
-    removedLetter = compareStr(e.target.value, tmpInputValue);
-    console.log(e.target.value, tmpInputValue);
-
-    for (var i = 0; i < incorectLetters.length; i++) {
-      if (incorectLetters[i] !== removedLetter) {
-        temp.push(incorectLetters[i]);
-      }
-    }
-    incorectLetters = temp;
-  }
-
   var inputStr = e.target.value;
   if (inputStr.includes(" ")) {
     typedWords.push(inputStr.slice(0, -1));
@@ -41,19 +27,7 @@ function handleInput(e) {
     }
   }
 
-  tmpInputValue = e.target.value;
   displayText(false, e.target.value);
-}
-
-function compareStr(str1, str2) {
-  var diffrence = [];
-  var str2Split = str2.split("");
-  str2Split.forEach((e, i) => {
-    if (e != str1[i]) {
-      diffrence.push((e + i).toString());
-    }
-  });
-  return `${diffrence.slice(0, 2)}`;
 }
 
 /**
@@ -72,14 +46,12 @@ function compareInput() {
   }
 }
 
-function checkLetter(letter, letterIndex) {
+function checkLetter(input) {
   if (
-    letter === codeWords[typedWords.length][letterIndex] &&
-    incorectLetters.length === 0
+    input === codeWords[typedWords.length].slice(0, input.length)
   ) {
     return "correctLetter";
   } else {
-    incorectLetters.push((letter + letterIndex).toString());
     return "incorrectLetter";
   }
 }
@@ -106,7 +78,7 @@ function displayText(completedWord, input) {
     tmpInputValue = "";
   } else {
     currentword.classList.add(
-      checkLetter(input[input.length - 1], input.length - 1)
+      checkLetter(input)
     );
     currentword.textContent = input;
   }
@@ -122,8 +94,6 @@ function displayText(completedWord, input) {
   textField.appendChild(hlTypedText);
   textField.appendChild(currentword);
   textField.appendChild(remainingText);
-
-  //console.log(textField.innerHTML);
 }
 
 var inputElement = document.querySelector(".input-field");
@@ -136,5 +106,3 @@ inputElement.addEventListener("input", (e) => {
 });
 
 displayText(true); // gör om displayText för den är skit och helt jälva piss
-
-//fixa så att man kan skriva saker i ordet utan att det bli rött
