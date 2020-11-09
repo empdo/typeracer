@@ -84,7 +84,7 @@ function displayText(completedWord, input) {
             type: "root",
             children: light.value,
         });
-        currentword.textContent = " ";
+        currentword.textContent = "";
         tmpInputValue = "";
     } else {
         currentword.classList.add(checkLetter(input));
