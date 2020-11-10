@@ -6,8 +6,8 @@
         <title>TypeAcer</title>
         <script src="js/lowlight.js"></script>
         <script src="js/hast-util-to-html.js"></script>
-        <link rel="stylesheet" href="css/atom_one.css" />
-        <link rel="stylesheet" href="css/style.css" />
+        <link  id="syntax-hl" rel="stylesheet" href="css/atom_one.css" />
+        <link rel="stylesheet" href="css/style.css"/>
         <link
             href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
             rel="stylesheet"
@@ -21,6 +21,15 @@
         <div class="dropdown">
             <button class="dropdown-btn">Languages</button>
             <div class="dropdown-content"></div>
+        </div>
+        <div class="dropdown">
+            <button class="dropdown-btn">Highlightning</button>
+            <div class="dropdown-content-hl">
+                <a onclick="changeTheme('css/atom_one.css')">atom_one</a>
+                <a onclick="changeTheme('css/dracula.css')">dracula</a>
+                <a onclick="changeTheme('css/monokai.css')">monokai</a>
+                <a onclick="changeTheme('css/solarized.css')">solarized</a>
+            </div>
         </div>
 
         <script src="js/script.js"></script>

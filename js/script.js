@@ -13,15 +13,20 @@ var incorectLetters = [];
 var tmpInputValue = "";
 var removedLetter = [];
 
+function changeTheme(url){
+    var themeTag = document.getElementById("syntax-hl");
+    themeTag.setAttribute("href", url)
+}
+
 function listLangs() {
     var langs = ["python", "javascript", "c#"];
 
     const dropdownContent = document.querySelector(".dropdown-content");
 
     for (var i = 0; i < langs.length; i++) {
-      var language = document.createElement("a");
-      language.textContent = langs[i];
-      dropdownContent.appendChild(language);
+        var language = document.createElement("a");
+        language.textContent = langs[i];
+        dropdownContent.appendChild(language);
     }
 }
 
