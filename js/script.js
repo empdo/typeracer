@@ -19,12 +19,11 @@ function changeTheme(url) {
     themeTag.setAttribute('href', url);
 }
 
-function loadSnippets(lang){
-    getSnippets().then(data => {
-        console.log(data);
-    })
-
-    console.log(snippets)
+function loadSnippets(lang) {
+    getSnippets(lang).then(data => {
+        snippets = data;
+        console.log(snippets);
+    });
 }
 
 function listLangs() {
@@ -36,10 +35,12 @@ function listLangs() {
         for (var i = 0; i < data.length; i++) {
             var language = document.createElement('a');
             language.textContent = data[i];
-            language.onclick = data => {loadSnippets(data[i])};
+            language.onclick = e => {
+                loadSnippets(data[i]);
+            };
             dropdownContent.appendChild(language);
         }
-    })
+    });
 }
 
 /**
@@ -86,13 +87,17 @@ function displayText(completedWord, input) {
     input = input ? input : '';
 
     if (completedWord) {
-        var light = lowlight.highlight('js', typedText + ' ');
+        var light = lowlight.highlight('js', typedText + " ");
         hlTypedText.innerHTML = hastUtilToHtml({
             type: 'root',
             children: light.value,
         });
+        
         currentWord.textContent = '';
         tmpInputValue = '';
+        console.log(typedText, typedText.length)
+        document.querySelector(".input-field-container").style.left = hlTypedText.offsetWidth + "px";
+
     } else {
         const currentLetter = codeWords[typedWords.length].slice(
             0,
@@ -128,3 +133,4 @@ inputElement.addEventListener('input', e => {
 
 listLangs();
 displayText(true); // gör om displayText för den är skit och helt jälva piss
+hlTypedText.innerHTML = "";

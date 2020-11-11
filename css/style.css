@@ -2,8 +2,37 @@ body {
     color: grey;
 
     font-family: 'Source Code Pro', monospace;
+    font-size: medium;
     
 }
+
+.input-field-container {
+    position: absolute;
+    right: 0;
+    left: 0;
+}
+
+.input-field {
+    color: #fff2;
+    background-color: transparent;
+    border: transparent;
+    caret-color: white;
+
+    outline: 2px solid red;
+    left: 0;
+    right: 0;
+
+    font-family: 'Source Code Pro', monospace;
+    font-size: medium;
+    padding: 0;
+
+    width: 100%;
+}
+
+.input-container {
+    position: relative;
+}
+
 .correctLetter {
     color: #206600;
 }

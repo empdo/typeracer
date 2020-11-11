@@ -1,7 +1,7 @@
 "use strict";
 
 async function getSnippets(language) {
-    const questionUrl = ("http://api.essung.dev/snippets");
+    const questionUrl = ("http://api.essung.dev/snippets/" + (language || ""));
     const questionRespons = await fetch(questionUrl);
     const questionJson = await questionRespons.json();
 
