@@ -1,7 +1,7 @@
 "use strict";
 
-async function getQuestions(language) {
-    const questionUrl = "http://s1.essung.dev:5000/snippets/";
+async function getSnippets(language) {
+    const questionUrl = ("http://api.essung.dev/snippets");
     const questionRespons = await fetch(questionUrl);
     const questionJson = await questionRespons.json();
 
@@ -9,7 +9,7 @@ async function getQuestions(language) {
 }
 
 async function getLanguages() {
-    const langUrl = "http://s1.essung.dev:5000/langs/";
+    const langUrl = "https://api.essung.dev/langs";
     const langRespons = await fetch(langUrl);
     const langJson = await langRespons.json();
 

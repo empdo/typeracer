@@ -1,6 +1,7 @@
 'use strict';
 
 var code = 'function displayText(completedWord, input)';
+var snippets;
 
 /**
  * @type {String[]}
@@ -18,16 +19,27 @@ function changeTheme(url) {
     themeTag.setAttribute('href', url);
 }
 
+function loadSnippets(lang){
+    getSnippets().then(data => {
+        console.log(data);
+    })
+
+    console.log(snippets)
+}
+
 function listLangs() {
-    var langs = ['python', 'javascript', 'c#'];
+    var langs = getLanguages();
 
-    const dropdownContent = document.querySelector('.dropdown-content');
+    langs.then(data => {
+        const dropdownContent = document.querySelector('.dropdown-content');
 
-    for (var i = 0; i < langs.length; i++) {
-        var language = document.createElement('a');
-        language.textContent = langs[i];
-        dropdownContent.appendChild(language);
-    }
+        for (var i = 0; i < data.length; i++) {
+            var language = document.createElement('a');
+            language.textContent = data[i];
+            language.onclick = data => {loadSnippets(data[i])};
+            dropdownContent.appendChild(language);
+        }
+    })
 }
 
 /**
