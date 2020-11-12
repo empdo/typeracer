@@ -16,7 +16,12 @@ var tmpInputValue = '';
 
 function getRandom(list) {
     return list[Math.floor(Math.random() * list.length)];
+
 }
+// function prossesCmd(){
+//     this[fnName](params);
+// }
+
 
 function changeTheme(url) {
     var themeTag = document.getElementById('syntax-hl');

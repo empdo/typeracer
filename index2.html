@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>TypeAcer</title>
+        <script src="js/lowlight.js"></script>
+        <script src="js/hast-util-to-html.js"></script>
+        <link id="syntax-hl" rel="stylesheet" href="css/monokai.css" />
+        <link rel="stylesheet" href="css/style1.css" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="cmd-container">
+            <span id="cmd-l">user@typeracer</span>
+            <span id="cmd-r">/dev/typeracer $</span>
+            <input class="cmd-input" type="text" />
+        </div>
+        <div id="commands-container">
+            <h1>Available commands, start everything of with typeracer</p>
+            <p>"-your language", to start a race with the decired language</p>
+            <p>"-ls lang", to list available langauages</p>
+            <p>"-cr", to create a multiplayer room</p>
+            <p>"-join" "room key", to join a room with the inserted key</p>
+        </div>
+        <script src="js/apiScript.js"></script>
+        <script src="js/script.js"></script>
+    </body>
+</html>

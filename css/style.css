@@ -4,6 +4,42 @@ body {
     font-family: 'Source Code Pro', monospace;
     font-size: medium;
     
+    background-color: black;
+}
+
+h1{
+    font-size: 15px;
+    color:#bbbbbbee;
+}
+p{
+    font-size: 10px;
+}
+
+.cmd-container {
+    margin: 0px;
+}
+
+#cmd-l{
+    color: #38960c;
+    font-weight: 800;
+    font-size: 15px;
+}
+#cmd-r{
+    color: white;
+    font-weight: 600;
+
+    padding-left: 0px;
+    font-size: 15px;
+}
+.cmd-input{
+    background-color: transparent;
+    border: transparent;
+    color:#ffffffab;
+
+    font-family: 'Source Code Pro', monospace;
+    font-size: medium;
+    padding: 0;
+
 }
 
 .input-field-container {
@@ -41,7 +77,7 @@ body {
     background-color: darkred;
 }
 
-pre {font-family: unset;}
+pre {font-family: unset; margin: 0px;}
 
 
 .dropdown-btn {

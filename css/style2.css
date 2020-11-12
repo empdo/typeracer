@@ -1,0 +1,50 @@
+body {
+    text-align: center;
+    font-family: 'Source Code Pro', monospace;
+    background-color: black;
+}
+
+p{
+    color: white;
+}
+
+#welcome-text{
+
+}
+
+#blink-anim {
+    animation: blink_animation 0.8s 1s alternate;
+}
+
+@keyframes blink_animation {
+    0% {
+        color: transparent;
+    }
+    10%{
+        color: white;
+    }
+
+    15% {
+        color: transparent;
+    }
+    25%{
+        color: white;
+    }
+
+    60% {
+        color: transparent;
+    }
+    80%{
+        color: white;
+    }
+    90% {
+        color: transparent;
+    }
+    99%{
+        color: white;
+    }
+}
+
+#typeacer-text{
+    
+}
