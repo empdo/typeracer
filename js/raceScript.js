@@ -1,6 +1,6 @@
 'use strict';
 
-var code = document.querySelector('.text-field').textContent;
+var coude = document.qerySelector('.text-field').textContent;
 var snippets;
 
 /**
