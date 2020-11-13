@@ -1,4 +1,4 @@
-var welcomeText = 'Hello there human, welcome to..';
+var welcomeText = 'Hello there human, welcome to..a"¤#%&/"';
 var welcomeObj = document.querySelector('#welcome-text');
 var typeacerObj = document.querySelector('#typeacer-text');
 var time = 0;
@@ -19,15 +19,17 @@ window.onload = function () {
         if (i === 18) {
             setTimeout(welcomeText => (welcomeObj.textContent += e), time);
             time += 600;
-        } else if (i == welcomeText.length - 1) {
+        } else if (i == 30) {
             setTimeout(welcomeText => {
                 welcomeObj.textContent += e;
                 welcomeObj.id = 'blink-anim';
                 showTypeacer();
-                //shit i det och gör så att den går till terminalen direkt och säger program crashed
             }, time);
             time += 100;
-        } else {
+        } else if (i>30){
+            setTimeout(welcomeText => (welcomeObj.textContent += e), time);
+            time += 350;
+        }else{
             setTimeout(welcomeText => (welcomeObj.textContent += e), time);
             time += 100;
         }
