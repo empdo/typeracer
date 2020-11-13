@@ -4,12 +4,23 @@ body {
     background-color: black;
 }
 
-p{
+p {
+
     color: white;
 }
 
-#welcome-text{
+.text-container {
+    padding-top: 50vh;
+    padding-bottom: 50vh;
+}
 
+#welcome-text {
+    /* font-size: 20px; */
+}
+#typeacer-text {
+    color: green;
+    font-weight: bold;
+    font-size: 30px;
 }
 
 #blink-anim {
@@ -20,31 +31,61 @@ p{
     0% {
         color: transparent;
     }
-    10%{
+
+    10% {
         color: white;
     }
 
     15% {
         color: transparent;
     }
-    25%{
+
+    25% {
         color: white;
     }
 
     60% {
         color: transparent;
     }
-    80%{
+
+    80% {
         color: white;
     }
+
     90% {
         color: transparent;
     }
-    99%{
+
+    99% {
         color: white;
     }
 }
 
-#typeacer-text{
-    
+.shake_anim {
+    animation: shake_animation 0.8s linear 0s 1 forwards;
 }
+
+@keyframes shake_animation {
+    0% {
+        transform: rotate(10deg);
+    }
+
+    5% {
+        transform: rotate(-10deg);
+    }
+
+    10% {
+        transform: rotate(5deg);
+    }
+
+    15% {
+        transform: rotate(-5deg);
+    }
+
+    20% {
+        transform: rotate(0deg);
+    }
+
+    100% {}
+}
+

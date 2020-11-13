@@ -12,11 +12,7 @@ h1{
     color:#bbbbbbee;
 }
 p{
-    font-size: 10px;
-}
-
-.cmd-container {
-    margin: 0px;
+    font-size: 13px;
 }
 
 #cmd-l{
@@ -42,6 +38,15 @@ p{
 
 }
 
+#cmd-output-container {
+    padding-top: 5px;
+    padding-left: 6vh;
+}
+
+.error-message {
+    color: #ac1111;
+}
+
 .input-field-container {
     position: absolute;
     right: 0;
@@ -64,6 +69,7 @@ p{
     width: 100%;
 }
 
+
 .input-container {
     position: relative;
 }
@@ -78,6 +84,8 @@ p{
 }
 
 pre {font-family: unset; margin: 0px;}
+
+
 
 
 .dropdown-btn {
