@@ -3,7 +3,7 @@ var cmdOutput = document.getElementById('cmd-output-container');
 
 function handleCmdInput(e) {
     if (e.key === 'Enter') {
-        if (e.target.value === '-h' || e.target.value === '--help') {
+        if (e.target.value === 'help') {
             Array.from(cmdOutput.childNodes).forEach(e => {
                 cmdOutput.removeChild(e);
             });
