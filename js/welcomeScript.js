@@ -7,6 +7,7 @@ function showTypeacer() {
     setTimeout(welcomeText => {
         welcomeObj.parentNode.removeChild(welcomeObj);
         typeacerObj.style.display = "none";
+        document.querySelector(".cmd-input").focus();
 
     }, time);
     time += 100;
