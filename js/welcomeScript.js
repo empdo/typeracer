@@ -31,6 +31,4 @@ window.onload = function () {
             time += 100;
         }
     });
-
-    //show typeacer and shake
 };
