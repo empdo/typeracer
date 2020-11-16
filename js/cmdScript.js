@@ -4,7 +4,7 @@ var cmdOutput = document.getElementById('cmd-output-container');
 function handleCmdInput(e) {
     if (e.key === 'Enter') {
         if (e.target.value === 'help') {
-            changeCmdOutput('help-template')
+            changeCmdOutput('help-template');
         } else if (e.target.value.slice(0, 2) === 'hl') {
             if (e.target.value.length === 2) {
                 changeCmdOutput('help-template-hl')
