@@ -1,12 +1,12 @@
 var welcomeText = 'Hello there human, welcome to..';
-var welcomeObj = document.querySelector('#welcome-text');
-var typeacerObj = document.querySelector('#typeacer-text');
+var welcomeObj = document.querySelector('.overlay-welcome-text');
+var typeacerObj = document.querySelector('#overlay-text-container');
 var time = 0;
 
 function showTypeacer() {
     setTimeout(welcomeText => {
         welcomeObj.parentNode.removeChild(welcomeObj);
-        location.replace("/index2.html")
+        typeacerObj.style.display = "none";
 
     }, time);
     time += 100;

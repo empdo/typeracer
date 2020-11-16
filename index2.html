@@ -8,12 +8,17 @@
         <script src="js/hast-util-to-html.js"></script>
         <link id="syntax-hl" rel="stylesheet" href="css/monokai.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="css/animations.css">
         <link
             href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
             rel="stylesheet"
         />
     </head>
     <body>
+        <div id="overlay-text-container">
+            <p class="overlay-welcome-text"></p>
+        </div>
+
         <div class="cmd-container">
             <span id="cmd-l">user@typeracer</span>
             <span id="cmd-r">/dev/typeracer $</span>
@@ -21,7 +26,7 @@
         </div>
         <div id="cmd-output-container">
             <p class="error-message">fatal error: program crashed</p>
-            <p>type "-h", "--help" for more</p>
+            <p>type "help" for more</p>
         </div>
 
         <template id="help-template">
@@ -33,5 +38,6 @@
 
         <script src="js/apiScript.js"></script>
         <script src="js/cmdScript.js"></script>
+        <script src="js/welcomeScript.js"></script>
     </body>
 </html>
