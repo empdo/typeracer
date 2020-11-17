@@ -23,7 +23,8 @@
         <div class="cmd-container">
             <span id="cmd-l">user@typeracer</span>
             <span id="cmd-r">/dev/typeracer $</span>
-            <input class="cmd-input" type="text" />
+            <form class="cmd-form"><input class="cmd-input" type="text" /></form>
+            
         </div>
         <div id="cmd-output-container">
             <p class="error-message">fatal error: program crashed</p>
@@ -53,6 +54,9 @@
                 <li>monokai</li>
                 <li>solarized</li>
             </ul>
+        </template>
+        <template id="command-not-found-template">
+            <p class="error-message">Error: Command not found!</p>
         </template>
 
         <script src="js/apiScript.js"></script>
