@@ -13,7 +13,8 @@ function handleCmdInput(e) {
                 themeTag.setAttribute(
                     'href',
                     `css/${e.target.value.slice(3)}.css`
-                );
+		    // Alve was here
+		);
             }
         }
     }
