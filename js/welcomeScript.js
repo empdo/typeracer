@@ -1,3 +1,4 @@
+var skipButton = document.getElementById('skip-button');
 var welcomeText = 'Hello there human, welcome to..';
 var welcomeObj = document.querySelector('.overlay-welcome-text');
 var typeacerObj = document.querySelector('#overlay-text-container');
@@ -6,15 +7,13 @@ var time = 0;
 function showTypeacer() {
     setTimeout(welcomeText => {
         welcomeObj.parentNode.removeChild(welcomeObj);
-        typeacerObj.style.display = "none";
-        document.querySelector(".cmd-input").focus();
-
+        typeacerObj.style.display = 'none';
+        document.querySelector('.cmd-input').focus();
     }, time);
     time += 100;
 }
 
 window.onload = function () {
-    typeacerObj.style.color = 'transparent';
 
     Array.from(welcomeText).forEach((e, i) => {
         if (i === 18) {
@@ -33,3 +32,7 @@ window.onload = function () {
         }
     });
 };
+
+skipButton.addEventListener("click", () => {
+    typeacerObj.style.display = 'none';
+})

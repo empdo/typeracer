@@ -1,9 +1,11 @@
 body {
     color: grey;
-
-    font-family: 'Source Code Pro', monospace;
     font-size: medium;
 
+}
+
+* {
+    font-family: 'Source Code Pro', monospace;
 }
 
 h1 {
@@ -54,7 +56,6 @@ p {
     border: transparent;
     color: #ffffffab;
 
-    font-family: 'Source Code Pro', monospace;
     font-size: medium;
     padding: 0;
 
@@ -84,7 +85,6 @@ p {
     left: 0;
     right: 0;
 
-    font-family: 'Source Code Pro', monospace;
     font-size: medium;
     padding: 0;
 
@@ -106,7 +106,6 @@ p {
 }
 
 pre {
-    font-family: unset;
     margin: 0px;
 }
 
@@ -178,4 +177,15 @@ pre {
 
 .dropdown:hover .dropdown-btn {
     background-color: #326d17;
+}
+
+#skip-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
 }
