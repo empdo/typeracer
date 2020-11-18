@@ -1,6 +1,6 @@
 'use strict';
 
-var coude = document.qerySelector('.text-field').textContent;
+var code = document.querySelector('.text-field').textContent;
 var snippets;
 
 /**
@@ -21,12 +21,6 @@ function getRandom(list) {
 // function prossesCmd(){
 //     this[fnName](params);
 // }
-
-
-function changeTheme(url) {
-    var themeTag = document.getElementById('syntax-hl');
-    themeTag.setAttribute('href', url);
-}
 
 function loadSnippets(lang) {
     getSnippets(lang).then(data => {
@@ -50,23 +44,6 @@ function setSnippet() {
         document.querySelector('.input-field-container').style.left =
             hlTypedText.offsetWidth + 'px';
     }
-}
-
-function listLangs() {
-    var langs = getLanguages();
-
-    langs.then(data => {
-        const dropdownContent = document.querySelector('.dropdown-content');
-
-        for (var i = 0; i < data.length; i++) {
-            var language = document.createElement('a');
-            language.textContent = data[i];
-            language.onclick = (e) => {
-                loadSnippets(e.target.innerHTML);
-            };
-            dropdownContent.appendChild(language);
-        }
-    });
 }
 
 /**
@@ -157,7 +134,6 @@ inputElement.addEventListener('input', e => {
     handleInput(e);
 });
 
-listLangs();
 loadSnippets('python');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
 hlTypedText.innerHTML = '';

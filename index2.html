@@ -23,16 +23,25 @@
         <div class="cmd-container">
             <span id="cmd-l">user@typeracer</span>
             <span id="cmd-r">/dev/typeracer $</span>
-            <form class="cmd-form"><input class="cmd-input" type="text" /></form>
-            
+            <form class="cmd-form">
+                <input class="cmd-input" type="text" />
+            </form>
         </div>
         <div id="cmd-output-container">
             <p class="error-message">fatal error: program crashed</p>
             <p>type "help" for more</p>
         </div>
 
-        
-        
+        <div class="typeracer-container">
+            <div class="text-container">
+                <div class="input-field-container">
+                    <input class="input-field" type="text" />
+                </div>
+                <pre><span class="text-field">text</span></pre>
+            </div>
+
+        </div>
+
         <template id="help-template">
             <p>Welcome to the one and only typeracer for programers</p>
             <p>try the following commands:</p>
@@ -62,5 +71,6 @@
         <script src="js/apiScript.js"></script>
         <script src="js/cmdScript.js"></script>
         <script src="js/welcomeScript.js"></script>
+        <script src="js/raceScript.js"></script>
     </body>
 </html>
