@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     width: 100%;
     height: 100%;
     margin: 0;
@@ -7,11 +8,12 @@ body, html {
     font-size: 14px;
 }
 
-#text-editor-container{
-    background-color: black;
+#text-editor-container {
+    background-color: #23241f;
 
     width: 100%;
     height: 100%;
+    position: relative;
 }
 
 #side-bar {
@@ -19,10 +21,74 @@ body, html {
     width: 25px;
 }
 
-.side-bar-number{
+.side-bar-number {
+    color: white;
+    display: block;
+    text-align: right;
+}
+.side-bar-symbol {
     color: white;
     display: block;
     text-align: right;
 }
 
-/*TODO: lägg till colla saker som t.ex wpm lpm i baren längst ner*/ 
+#bottom-bar {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+
+    background-color: #292a25;
+    height: 23px;
+    width: 100%;
+
+    overflow: hidden;
+}
+
+#editor-mode {
+    background-color: #708f11;
+    color: #1f2805;
+    height: 100%;
+    width: 70px;
+    margin: 0px;
+
+    position: relative;
+    text-align: center;
+
+    display: inline-block;
+}
+
+#editor-mode:before {
+    content: '';
+    position: absolute;
+    right: -20px;
+    border-left: 20px solid #708f11;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+#file-name {
+    background-color: #dcdcdc22;
+    color: #1f2805;
+    height: 100%;
+    width: 150px;
+    margin: 0px;
+
+    position: relative;
+    text-align: center;
+
+    display: inline-block;
+    left: -10px;
+}
+
+#file-name:before {
+    content: '';
+    position: absolute;
+    right: -20px;
+    border-left: 20px solid #dcdcdc22;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+}
+
+
+
+/*TODO: lägg till colla saker som t.ex wpm lpm i baren längst ner*/
