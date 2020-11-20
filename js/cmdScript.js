@@ -85,3 +85,5 @@ inputForm.addEventListener('submit', e => {
     parseCommand(inputElement.value);
     inputElement.value = "";
 });
+
+//TODO: om man kör multiplayer så blir det split screen, som vim
