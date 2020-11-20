@@ -6,6 +6,7 @@ html {
 
     font-family: 'Source Code Pro', monospace;
     font-size: 14px;
+    color: #fffa;
 }
 
 #text-editor-container {
@@ -22,12 +23,11 @@ html {
 }
 
 .side-bar-number {
-    color: white;
     display: block;
     text-align: right;
 }
 .side-bar-symbol {
-    color: white;
+    color: rgba(255, 255, 255, 0.507);
     display: block;
     text-align: right;
     left: -10px;
@@ -75,7 +75,6 @@ html {
 
 #file-name-t {
     background-color: #23241f;
-    color: white;
     height: 100%;
     width: 120px;
     padding: 5px;
