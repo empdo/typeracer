@@ -34,7 +34,7 @@ html {
     position: relative;
 }
 
-#top-bar{
+#top-bar {
     position: absolute;
     top: 0;
 
@@ -61,8 +61,9 @@ html {
 #editor-mode {
     background-color: #708f11;
     color: #1f2805;
+    font-weight: bold;
     padding-top: 2.5px;
-    padding-bottom: 2.5px;;
+    padding-bottom: 2.5px;
     width: 80px;
     margin: 0px;
 
@@ -94,12 +95,37 @@ html {
     margin: 0px;
 
     position: relative;
-    text-align: center;
+    text-align: left;
 
     display: inline-block;
-    left: -10px;
 }
 
+#unix {
+    background-color: rgba(168, 161, 161, 0.093);
+    color: #708f11;
+    font-weight: bold;
+    width: 60px;
+    padding: 2.5px;
+
+    position: relative;
+    float: right;
+    text-align: center;
+
+}
+
+#right-block-container{
+    background-color: #708f11;
+    color: #1f2805;
+
+    float: right;
+    padding: 2.5px;
+    padding-right: 5px;
+}
+
+#procent-completed{
+    padding-left: 5px;
+    padding-right: 0px; 
+}
 
 
 /*TODO: lägg till colla saker som t.ex wpm lpm i baren längst ner*/
