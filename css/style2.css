@@ -61,7 +61,8 @@ html {
 #editor-mode {
     background-color: #708f11;
     color: #1f2805;
-    height: 100%;
+    padding-top: 2.5px;
+    padding-bottom: 2.5px;;
     width: 80px;
     margin: 0px;
 
@@ -89,7 +90,6 @@ html {
 #file-name-b {
     background-color: transparent;
     color: #708f11;
-    height: 100%;
     width: 120px;
     margin: 0px;
 
