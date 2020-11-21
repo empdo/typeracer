@@ -19,7 +19,7 @@ html {
         'mid-l mid-r'
         'bottom bottom';
 
-    grid-template-columns: 25px auto;
+    grid-template-columns: auto 1fr;
     grid-template-rows: 10% auto 10%;
 }
 
