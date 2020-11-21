@@ -4,22 +4,29 @@ html {
     height: 100%;
     margin: 0;
 
-    font-family: 'Source Code Pro', monospace;
-    font-size: 13px;
     color: #fffa;
 }
-
+* {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+}
 #text-editor-container {
     background-color: #23241f;
+    display: grid;
 
-    width: 100%;
-    height: 100%;
-    position: relative;
+    grid-template-areas:
+        'top top'
+        'mid-l mid-r'
+        'bottom bottom';
+
+    grid-template-columns: 25px auto;
+    grid-template-rows: 10% auto 10%;
 }
 
 #side-bar {
-    padding-top: 23px;
     width: 25px;
+
+    grid-area: mid-l;
 }
 
 .side-bar-number {
@@ -27,26 +34,41 @@ html {
     text-align: right;
 }
 .side-bar-symbol {
-    color: rgba(255, 255, 255, 0.507);
+    color: #ffffff81;
     display: block;
     text-align: right;
     left: -10px;
     position: relative;
 }
 
+.typeracer-container {
+    grid-area: mid-r;
+
+    padding-left: 10px;
+}
+
 #top-bar {
-    position: absolute;
     top: 0;
 
     background-color: #2c2d29;
     height: 23px;
     width: 100%;
 
-    overflow: hidden;
+    grid-area: top;
+}
+
+#file-name-t {
+    background-color: #23241f;
+    width: 120px;
+
+    padding-top: 3.8px;
+    padding-bottom: 3.8px;;
+
+    text-align: center;
+    display: inline-block;
 }
 
 #bottom-bar {
-    position: absolute;
     bottom: 10px;
 
     background-color: #2c2d29;
@@ -55,7 +77,7 @@ html {
 
     font-size: 13px;
 
-    overflow: hidden;
+    grid-area: bottom;
 }
 
 #editor-mode {
@@ -73,19 +95,7 @@ html {
     display: inline-block;
 }
 
-#file-name-t {
-    background-color: #23241f;
-    height: 100%;
-    width: 120px;
-    padding: 5px;
 
-    position: relative;
-    text-align: center;
-    font-size: 12px;
-
-    display: inline-block;
-    left: -5px;
-}
 
 #file-name-b {
     background-color: transparent;
@@ -107,12 +117,10 @@ html {
     padding: 2.5px;
 
     position: relative;
-    float: right;
     text-align: center;
-
 }
 
-#right-block-container{
+#right-block-container {
     background-color: #708f11;
     color: #1f2805;
 
@@ -121,10 +129,9 @@ html {
     padding-right: 5px;
 }
 
-#procent-completed{
+#procent-completed {
     padding-left: 5px;
-    padding-right: 0px; 
+    padding-right: 0px;
 }
-
 
 /*TODO: lägg till colla saker som t.ex wpm lpm i baren längst ner*/

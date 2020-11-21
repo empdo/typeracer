@@ -41,8 +41,8 @@ function setSnippet() {
         typedWords = [];
         hlTypedText.textContent = '';
         codeWords = code.split(' ');
-        document.querySelector('.input-field-container').style.left =
-            hlTypedText.offsetWidth + 'px';
+        document.querySelector('.input-field').style.left =
+            (hlTypedText.offsetWidth +35)+ 'px';
     }
 }
 
@@ -98,8 +98,8 @@ function displayText(completedWord, input) {
 
         currentWord.textContent = '';
         tmpInputValue = '';
-        document.querySelector('.input-field-container').style.left =
-            hlTypedText.offsetWidth + 'px';
+        document.querySelector('.input-field').style.left =
+            (hlTypedText.offsetWidth +35)  + 'px';
     } else {
         const currentLetter = codeWords[typedWords.length].slice(
             0,
@@ -134,6 +134,6 @@ inputElement.addEventListener('input', e => {
     handleInput(e);
 });
 
-loadSnippets('python');
+loadSnippets('javascript');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
 hlTypedText.innerHTML = '';

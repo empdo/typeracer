@@ -8,7 +8,11 @@
             href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,900&display=swap"
             rel="stylesheet"
         />
+        <script src="js/lowlight.js"></script>
+        <script src="js/hast-util-to-html.js"></script>
+        <link id="syntax-hl" rel="stylesheet" href="css/monokai.css" />
         <link rel="stylesheet" href="css/style2.css" />
+        <link rel="stylesheet" href="css/racer.css" />
         <title>Document</title>
     </head>
     <body>
@@ -17,19 +21,31 @@
                 <span id="file-name-t">Typeracer.js</span>
             </div>
             <div id="side-bar"></div>
+
             <div id="bottom-bar">
                 <span id="editor-mode">INSERT</span>
                 <span id="file-name-b">Typeracer.js</span>
                 <div id="right-block-container">
                     <span id="procent-completed">420%</span>
                     <span id="break-sign">|</span>
-                    <span id="cpm">cpm:69</span>
-                    <span id="tpm"> tkpm:alve</span>
+                    <span id="cpm">cpm:82</span>
+                    <span id="tpm"> tkpm:16</span>
                 </div>
                 <span id="unix">[UNIX]</span>
+            </div>
+
+            <div class="typeracer-container">
+                <div class="text-container">
+                    <div class="input-field-container">
+                        <input class="input-field" type="text" />
+                    </div>
+                    <pre><span class="text-field">text</span></pre>
+                </div>
             </div>
         </div>
 
         <script src="js/textEditor.js"></script>
+        <script src="js/apiScript.js"></script>
+        <script src="js/raceScript.js"></script>
     </body>
 </html>
