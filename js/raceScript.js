@@ -1,6 +1,6 @@
 'use strict';
 
-var code = document.querySelector('.text-field').textContent;
+var code = "def sak():\n    hejsan('fiskmås')"; //document.querySelector('.text-field').textContent;
 var snippets;
 
 /**
@@ -16,33 +16,44 @@ var tmpInputValue = '';
 
 function getRandom(list) {
     return list[Math.floor(Math.random() * list.length)];
-
 }
 // function prossesCmd(){
 //     this[fnName](params);
 // }
 
 function loadSnippets(lang) {
-    getSnippets(lang).then(data => {
-        snippets = data;
-        console.log(snippets);
-        setSnippet();
-    });
+    var tmpSnippet = "def sak():\n    hejsan('fiskmås')";
+    
+    tmpSnippet = tmpSnippet.split('\n');
+    tmpSnippet = tmpSnippet.join(''); //borde göra olika variablar ist för att ba gö allt på samma
+    tmpSnippet = tmpSnippet.split(' ');
+
+    tmpSnippet = tmpSnippet.filter(e => e);
+
+    console.log(tmpSnippet);
+
+    // getSnippets(lang).then(data => {
+    //     snippets = data;
+    //     console.log(snippets);
+    //     setSnippet();
+    // });
+    codeWords = tmpSnippet;
     currentLanguage = lang;
 }
 
 function setSnippet() {
-    var snippet = getRandom(snippets);
+    var snippet = "def sak():\n    hejsan('fiskmås')"; // getRandom(snippets);
     console.log(snippet.snippet);
 
-    if (snippet.snippet != document.querySelector('.text-field').textContent) {
-        document.querySelector('.text-field').textContent = snippet.snippet;
-        code = snippet.snippet;
+    if (true) {
+        //(snippet.snippet != document.querySelector('.text-field').textContent) {
+        document.querySelector('.text-field').textContent = snippet; //snippet.snippet;
+        code = snippet; //snippet.snippet;
         typedWords = [];
         hlTypedText.textContent = '';
-        codeWords = code.split(' ');
+
         document.querySelector('.input-field').style.left =
-            (hlTypedText.offsetWidth +35)+ 'px';
+            hlTypedText.offsetWidth + 35 + 'px';
     }
 }
 
@@ -70,6 +81,8 @@ function handleInput(e) {
 function compareInput() {
     var currentWordIndex = typedWords.length - 1;
     var textToCompare = typedWords[currentWordIndex];
+
+    console.log(codeWords[currentWordIndex], textToCompare);
 
     if (codeWords[currentWordIndex] == textToCompare) {
         return true;
@@ -99,7 +112,7 @@ function displayText(completedWord, input) {
         currentWord.textContent = '';
         tmpInputValue = '';
         document.querySelector('.input-field').style.left =
-            (hlTypedText.offsetWidth +35)  + 'px';
+            hlTypedText.offsetWidth + 35 + 'px';
     } else {
         const currentLetter = codeWords[typedWords.length].slice(
             0,
@@ -111,7 +124,7 @@ function displayText(completedWord, input) {
         currentWord.textContent = input;
     }
 
-    if (typedText.length >= code.length){
+    if (typedText.length >= code.length) {
         setSnippet();
     }
 
