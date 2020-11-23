@@ -1,6 +1,6 @@
 'use strict';
 
-var code = "def sak():\n    hejsan('fiskmås')"; //document.querySelector('.text-field').textContent;
+var code = document.querySelector('.text-field').textContent;
 var snippets;
 
 /**
@@ -23,31 +23,40 @@ function getRandom(list) {
 
 function loadSnippets(lang) {
     var tmpSnippet = "def sak():\n    hejsan('fiskmås')";
-    
+
     tmpSnippet = tmpSnippet.split('\n');
-    tmpSnippet = tmpSnippet.join(''); //borde göra olika variablar ist för att ba gö allt på samma
-    tmpSnippet = tmpSnippet.split(' ');
-
-    tmpSnippet = tmpSnippet.filter(e => e);
-
     console.log(tmpSnippet);
 
+    currentLanguage = lang;
+    codeWords = tmpSnippet;
+
+    setSnippet(tmpSnippet);
     // getSnippets(lang).then(data => {
     //     snippets = data;
     //     console.log(snippets);
     //     setSnippet();
     // });
-    codeWords = tmpSnippet;
-    currentLanguage = lang;
+
 }
 
-function setSnippet() {
-    var snippet = "def sak():\n    hejsan('fiskmås')"; // getRandom(snippets);
-    console.log(snippet.snippet);
+function setSnippet(snippet) {
+    console.log(snippet);
+    var textField = document.querySelector('.text-field');
+
 
     if (true) {
         //(snippet.snippet != document.querySelector('.text-field').textContent) {
-        document.querySelector('.text-field').textContent = snippet; //snippet.snippet;
+        snippet.forEach((e, i) => {
+            console.log(e);
+            var line = document.createElement('span');
+            line.id = ('.text-line'+i);
+            line.textContent = e;
+            console.log(line);
+            textField.append(line);
+        });
+        
+        console.log(textField);
+
         code = snippet; //snippet.snippet;
         typedWords = [];
         hlTypedText.textContent = '';
@@ -70,7 +79,6 @@ function handleInput(e) {
             displayText(true);
         }
     }
-
     displayText(false, e.target.value);
 }
 
@@ -135,7 +143,7 @@ function displayText(completedWord, input) {
 
     var textField = document.querySelector('.text-field');
 
-    textField.innerHTML = '';
+   //textField.innerHTML = '';
     textField.appendChild(hlTypedText);
     textField.appendChild(currentWord);
     textField.appendChild(remainingText);
@@ -143,10 +151,15 @@ function displayText(completedWord, input) {
 
 var inputElement = document.querySelector('.input-field');
 inputElement.value = '';
-inputElement.addEventListener('input', e => {
-    handleInput(e);
-});
+inputElement.addEventListener('input', handleInput);
+inputElement.addEventListener('keydown', e => {
+    if (e.key === "Enter"){
+        e.target.value = e.target.value + "as";
+        handleInput(e);
+    }
+})
 
-loadSnippets('javascript');
+
+loadSnippets('python');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
 hlTypedText.innerHTML = '';
