@@ -1,0 +1,33 @@
+.input-field {
+    font-family: 'Source Code Pro', monospace;
+    font-size: 12px;
+
+    position: absolute;
+    color: #fff2;
+    background-color: transparent;
+    border: transparent;
+    caret-color: white;
+    outline: none;
+
+    left: 35px;
+    right: 0;
+
+    padding: 0;
+
+    width: 100%;
+}
+
+
+
+.correctLetter {
+    color: #206600;
+}
+
+.incorrectLetter {
+    color: white;
+    background-color: darkred;
+}
+
+pre {
+    margin: 0px;
+}
