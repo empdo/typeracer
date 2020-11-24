@@ -68,17 +68,14 @@ function setSnippet(snippet) {
 function handleInput(e) {
     var inputStr = e.target.value;
     var typedLetters = typedWords + inputStr;
-    // if (compareLetter(inputStr) && typedLetters.length === code.length) {
-    //     console.log('hej');
-    // }
-    if (inputStr.includes(' ')) {
+    if (inputStr.includes(' ') && typedLetters.length < code.length) {
         typedWords.push(inputStr.slice(0, -1));
         if (compareInput()) {
             e.target.value = '';
             displayText(true);
         }
     }
-    
+
     displayText(false, e.target.value);
 }
 
@@ -131,7 +128,6 @@ function displayText(completedWord, input) {
         document.querySelector('.input-field').style.left =
             hlTypedText.offsetWidth + 35 + 'px';
     } else {
-        console.log("hej");
         currentWord.classList.add(
             compareLetter(input) ? 'correctLetter' : 'incorrectLetter'
         );
