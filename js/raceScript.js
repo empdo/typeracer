@@ -2,13 +2,16 @@
 
 var code = '';
 var snippets;
+var currentLineIndex = 0;
+
+var hlTypedText = document.createElement('span');
 
 /**
  * @type {String[]}
  */
 var typedWords = [];
 var codeWords = code.split(' ');
-var hlTypedText = document.createElement('span');
+
 
 var currentLanguage;
 
@@ -38,6 +41,7 @@ function loadSnippets(lang) {
 
 function setSnippet(snippet) {
     var textField = document.querySelector('.text-field');
+    currentLineIndex = 0;
 
     if (true) {
         //(snippet.snippet != document.querySelector('.text-field').textContent) {
@@ -51,7 +55,8 @@ function setSnippet(snippet) {
             textField.append(line);
         });
 
-        code = document.getElementById('line0').textContent; //snippet.snippet;
+        code = document.getElementById('line0').textContent;
+ //snippet.snippet;
         codeWords = code.split(' ');
         typedWords = [];
         hlTypedText.textContent = '';
@@ -87,12 +92,11 @@ function compareInput() {
     var currentWordIndex = typedWords.length - 1;
     var textToCompare = typedWords[currentWordIndex];
 
-    if (codeWords[currentWordIndex] == textToCompare) {
-        return true;
-    } else {
+    const isCorrect = codeWords[currentWordIndex] == textToCompare;
+    if (!isCorrect) {
         typedWords.pop(currentWordIndex);
-        return false;
     }
+    return isCorrect;
 }
 
 function compareLetter(input) {
@@ -111,6 +115,7 @@ function compareLetter(input) {
  * @param {String} input
  */
 function displayText(completedWord, input) {
+    var hlTypedText = document.createElement('span');
     var typedText = typedWords.join(' ');
     var currentWord = document.createElement('span');
 
@@ -143,12 +148,11 @@ function displayText(completedWord, input) {
         typedText.length + input.length + (typedWords.length === 0 ? 0 : 1)
     );
 
-    var currentLine = document.getElementById('line0');
-    console.log(currentLine);
+    var currentLine = document.getElementById('line' + currentLineIndex);
     currentLine.innerHTML = '';
-    currentLine.appendChild(hlTypedText);
-    currentLine.appendChild(currentWord);
-    currentLine.appendChild(remainingText);
+    [hlTypedText, currentWord, remainingText].forEach(e => {
+        currentLine.appendChild(e);
+    });
 }
 
 var inputElement = document.querySelector('.input-field');
@@ -156,8 +160,25 @@ inputElement.value = '';
 inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-        e.target.value = e.target.value + 'as';
-        handleInput(e);
+        if ((typedWords + e.target.value).length +1 === code.length) {
+            typedWords.push(e.target.value);
+            if (compareInput()) {
+                e.target.value = '';
+                displayText(true);
+            }
+        }
+
+        currentLineIndex = currentLineIndex + 1;
+        code = document.getElementById('line' + currentLineIndex).textContent;
+        codeWords = code.split(' ');
+        typedWords = [];
+
+        // document.querySelector('.input-field').style.left =
+        //     hlTypedText.offsetWidth + 35 + 'px';
+
+        e.target.value = '';
+
+        displayText(false);
     }
 });
 
