@@ -38,6 +38,7 @@ function loadSnippets(lang) {
 
 function setSnippet(snippet) {
     var textField = document.querySelector('.text-field');
+    var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
     currentLineIndex = 0;
 
     if (true) {
@@ -48,10 +49,16 @@ function setSnippet(snippet) {
             line.id = 'line' + i;
 
             var lineContent = document.createElement('span');
-            lineContent.textContent = e;
+            for (var j=0; j < e.length; j++){
+                if (e[j] !== " "){
+                    lineContent.textContent = e.slice(j);
+                    lineContent.style.padding = j*6 + "px";
+                    break;
+                }
+            }
 
             var lineHlTypedText = document.createElement('span');
-            lineHlTypedText.id = 'hltypedText-line' + i;
+            lineHlTypedText.id = 'hlTypedText-line' + i;
 
             line.append(lineContent);
             line.append(lineHlTypedText);
@@ -118,7 +125,8 @@ function compareLetter(input) {
 function displayText(completedWord, input) {
     var typedText = typedWords.join(' ');
     var currentWord = document.createElement('span');
-    var hlTypedText = document.getElementById('hltypedText-line' + currentLineIndex);
+    var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
+    console.log(hlTypedText, 'hlTypedText-line' + currentLineIndex);
 
     input = input ? input : '';
 
@@ -142,6 +150,8 @@ function displayText(completedWord, input) {
         );
         currentWord.textContent = input;
     }
+
+
 
     // if (typedText.length >= code.length) {
     //     setSnippet();
@@ -177,6 +187,7 @@ inputElement.addEventListener('keydown', e => {
         code = document.getElementById('line' + currentLineIndex).textContent;
         codeWords = code.split(' ');
         typedWords = [];
+        console.log(code);
 
         // document.querySelector('.input-field').style.left =
         //     hlTypedText.offsetWidth + 35 + 'px';
