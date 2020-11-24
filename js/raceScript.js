@@ -4,14 +4,11 @@ var code = '';
 var snippets;
 var currentLineIndex = 0;
 
-var hlTypedText = document.createElement('span');
-
 /**
  * @type {String[]}
  */
 var typedWords = [];
 var codeWords = code.split(' ');
-
 
 var currentLanguage;
 
@@ -49,14 +46,19 @@ function setSnippet(snippet) {
             console.log(e);
             var line = document.createElement('div');
             line.id = 'line' + i;
+
             var lineContent = document.createElement('span');
             lineContent.textContent = e;
+
+            var lineHlTypedText = document.createElement('span');
+            lineHlTypedText.id = 'hltypedText-line' + i;
+
             line.append(lineContent);
+            line.append(lineHlTypedText);
             textField.append(line);
         });
 
         code = document.getElementById('line0').textContent;
- //snippet.snippet;
         codeWords = code.split(' ');
         typedWords = [];
         hlTypedText.textContent = '';
@@ -80,7 +82,6 @@ function handleInput(e) {
             displayText(true);
         }
     }
-
     displayText(false, e.target.value);
 }
 
@@ -115,14 +116,17 @@ function compareLetter(input) {
  * @param {String} input
  */
 function displayText(completedWord, input) {
-    var hlTypedText = document.createElement('span');
     var typedText = typedWords.join(' ');
     var currentWord = document.createElement('span');
+    var hlTypedText = document.getElementById('hltypedText-line' + currentLineIndex);
 
     input = input ? input : '';
 
     if (completedWord) {
-        var light = lowlight.highlight(currentLanguage, typedText + ' ');
+        var light = lowlight.highlight(
+            currentLanguage,
+            typedText + (typedText ? ' ' : '')
+        );
         hlTypedText.innerHTML = hastUtilToHtml({
             type: 'root',
             children: light.value,
@@ -153,6 +157,7 @@ function displayText(completedWord, input) {
     [hlTypedText, currentWord, remainingText].forEach(e => {
         currentLine.appendChild(e);
     });
+    console.log(hlTypedText.textContent);
 }
 
 var inputElement = document.querySelector('.input-field');
@@ -160,7 +165,7 @@ inputElement.value = '';
 inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-        if ((typedWords + e.target.value).length +1 === code.length) {
+        if ((typedWords + e.target.value).length + 1 === code.length) {
             typedWords.push(e.target.value);
             if (compareInput()) {
                 e.target.value = '';
@@ -184,4 +189,3 @@ inputElement.addEventListener('keydown', e => {
 
 loadSnippets('python');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
-hlTypedText.innerHTML = '';
