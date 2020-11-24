@@ -1,6 +1,6 @@
 'use strict';
 
-var code = document.querySelector('.text-field').textContent;
+var code = '';
 var snippets;
 
 /**
@@ -25,10 +25,8 @@ function loadSnippets(lang) {
     var tmpSnippet = "def sak():\n    hejsan('fiskmås')";
 
     tmpSnippet = tmpSnippet.split('\n');
-    console.log(tmpSnippet);
 
     currentLanguage = lang;
-    codeWords = tmpSnippet;
 
     setSnippet(tmpSnippet);
     // getSnippets(lang).then(data => {
@@ -36,28 +34,25 @@ function loadSnippets(lang) {
     //     console.log(snippets);
     //     setSnippet();
     // });
-
 }
 
 function setSnippet(snippet) {
-    console.log(snippet);
     var textField = document.querySelector('.text-field');
-
 
     if (true) {
         //(snippet.snippet != document.querySelector('.text-field').textContent) {
         snippet.forEach((e, i) => {
             console.log(e);
-            var line = document.createElement('span');
-            line.id = ('.text-line'+i);
-            line.textContent = e;
-            console.log(line);
+            var line = document.createElement('div');
+            line.id = 'line' + i;
+            var lineContent = document.createElement('span');
+            lineContent.textContent = e;
+            line.append(lineContent);
             textField.append(line);
         });
-        
-        console.log(textField);
 
-        code = snippet; //snippet.snippet;
+        code = document.getElementById('line0').textContent; //snippet.snippet;
+        codeWords = code.split(' ');
         typedWords = [];
         hlTypedText.textContent = '';
 
@@ -72,6 +67,10 @@ function setSnippet(snippet) {
  */
 function handleInput(e) {
     var inputStr = e.target.value;
+    var typedLetters = typedWords + inputStr;
+    if (compareLetter(inputStr) && typedLetters.length === code.length) {
+        console.log('hej');
+    }
     if (inputStr.includes(' ')) {
         typedWords.push(inputStr.slice(0, -1));
         if (compareInput()) {
@@ -79,7 +78,7 @@ function handleInput(e) {
             displayText(true);
         }
     }
-    displayText(false, e.target.value);
+    displayText(false, inputStr);
 }
 
 /**
@@ -90,12 +89,21 @@ function compareInput() {
     var currentWordIndex = typedWords.length - 1;
     var textToCompare = typedWords[currentWordIndex];
 
-    console.log(codeWords[currentWordIndex], textToCompare);
-
     if (codeWords[currentWordIndex] == textToCompare) {
         return true;
     } else {
         typedWords.pop(currentWordIndex);
+        return false;
+    }
+}
+
+function compareLetter(input) {
+    //borde ha det som en inline funktion men använder den på flera ställen
+    const currentLetter = codeWords[typedWords.length].slice(0, input.length);
+
+    if (input === currentLetter) {
+        return true;
+    } else {
         return false;
     }
 }
@@ -122,43 +130,38 @@ function displayText(completedWord, input) {
         document.querySelector('.input-field').style.left =
             hlTypedText.offsetWidth + 35 + 'px';
     } else {
-        const currentLetter = codeWords[typedWords.length].slice(
-            0,
-            input.length
-        );
         currentWord.classList.add(
-            input === currentLetter ? 'correctLetter' : 'incorrectLetter'
+            compareLetter(input) ? 'correctLetter' : 'incorrectLetter'
         );
         currentWord.textContent = input;
     }
 
-    if (typedText.length >= code.length) {
-        setSnippet();
-    }
+    // if (typedText.length >= code.length) {
+    //     setSnippet();
+    // }
 
     var remainingText = document.createElement('span');
     remainingText.textContent = code.slice(
         typedText.length + input.length + (typedWords.length === 0 ? 0 : 1)
     );
 
-    var textField = document.querySelector('.text-field');
-
-   //textField.innerHTML = '';
-    textField.appendChild(hlTypedText);
-    textField.appendChild(currentWord);
-    textField.appendChild(remainingText);
+    var currentLine = document.getElementById('line0');
+    console.log(currentLine);
+    currentLine.innerHTML = '';
+    currentLine.appendChild(hlTypedText);
+    currentLine.appendChild(currentWord);
+    currentLine.appendChild(remainingText);
 }
 
 var inputElement = document.querySelector('.input-field');
 inputElement.value = '';
 inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
-    if (e.key === "Enter"){
-        e.target.value = e.target.value + "as";
+    if (e.key === 'Enter') {
+        e.target.value = e.target.value + 'as';
         handleInput(e);
     }
-})
-
+});
 
 loadSnippets('python');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
