@@ -52,7 +52,7 @@ function setSnippet(snippet) {
             for (var j=0; j < e.length; j++){
                 if (e[j] !== " "){
                     lineContent.textContent = e.slice(j);
-                    lineContent.style.padding = j*6 + "px";
+                    lineContent.style.padding = j*6 + "px"; //TODO: lägg till en spantag med mellanslag som indents
                     break;
                 }
             }
