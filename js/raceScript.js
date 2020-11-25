@@ -53,7 +53,7 @@ function setSnippet(snippet) {
                     lineContent.textContent = e.slice(j);
                     lineContent.id = "lineContent" +i;
                     var indenting = document.createElement("span");
-                    indenting.textContent = ("-").repeat(j);
+                    indenting.textContent = (" ").repeat(j);
                     break;
                 }
             }
