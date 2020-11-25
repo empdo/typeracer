@@ -73,6 +73,8 @@ function setSnippet(snippet) {
             textField.append(line);
         });
 
+        resizeSidebar(snippet.length);
+
         var hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
         );
@@ -158,7 +160,7 @@ function displayText(completedWord, input) {
         currentWord.textContent = '';
         tmpInputValue = '';
 
-        var hlTypedText = document.getElementById(
+        hlTypedText = document.getElementById(
             'hlTypedText-line' + nextLineIndex
         );
         var objToOffset =
@@ -168,7 +170,7 @@ function displayText(completedWord, input) {
         document.querySelector('.input-field').style.left =
             objToOffset.offsetWidth + 'px';
 
-        var hlTypedText = document.getElementById(
+        hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
         );
     } else {

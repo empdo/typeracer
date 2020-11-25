@@ -1,14 +1,16 @@
 'use strict';
 
+var hasEventListner = false;
+
 function resizeSidebar(rows) {
     var sideBar = document.getElementById('side-bar');
 
     sideBar.innerHTML = "";
 
-    var i = 0;
+    var i = 1;
     while (notOverflowing()) {
         var number = document.createElement('span');
-        if (i < rows /*number of rows of code */) {
+        if (i < rows+1 /*number of rows of code */) {
             number.textContent = i;
             number.className = 'side-bar-number';
         } else {
@@ -30,8 +32,10 @@ function resizeSidebar(rows) {
             window.innerHeight
         );
     }
+    if (!hasEventListner){
+        window.addEventListener('resize', e => resizeSidebar(rows));    
+        hasEventListner = true;
+    }
 }
 
 
-resizeSidebar(12);
-window.addEventListener('resize', e => resizeSidebar(12));
