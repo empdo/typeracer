@@ -187,22 +187,22 @@ inputElement.addEventListener('keydown', e => {
             if (compareInput()) {
                 e.target.value = '';
                 displayText(true);
+
+                if (document.getElementById("lineContent" + (currentLineIndex+1))){ //! yterst tillfällig ska egentligen loada ny snippet
+                    currentLineIndex = currentLineIndex + 1
+                }
+        
+                code = document.getElementById('lineContent' + currentLineIndex).textContent;
+                codeWords = code.split(' ');
+                typedWords = [];
+                console.log(code);
             }
         }
 
-        if (document.getElementById("lineContent" + (currentLineIndex+1))){ //! yterst tillfällig ska egentligen loada ny snippet
-            currentLineIndex = currentLineIndex + 1
-        }
-        
-        code = document.getElementById('lineContent' + currentLineIndex).textContent;
-        codeWords = code.split(' ');
-        typedWords = [];
-        console.log(code);
+
 
         // document.querySelector('.input-field').style.left =
         //     hlTypedText.offsetWidth + 35 + 'px';
-
-        e.target.value = '';
     }
 });
 
