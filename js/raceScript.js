@@ -107,6 +107,8 @@ function compareInput() {
     var currentWordIndex = typedWords.length - 1;
     var textToCompare = typedWords[currentWordIndex];
 
+    console.log(codeWords[currentWordIndex], textToCompare);
+
     const isCorrect = codeWords[currentWordIndex] == textToCompare;
     if (!isCorrect) {
         typedWords.pop(currentWordIndex);
@@ -133,7 +135,6 @@ function displayText(completedWord, input) {
     var typedText = typedWords.join(' ');
     var currentWord = document.createElement('span');
     var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
-    console.log(hlTypedText, 'hlTypedText-line' + currentLineIndex);
 
     input = input ? input : '';
 
@@ -151,6 +152,7 @@ function displayText(completedWord, input) {
         tmpInputValue = '';
         document.querySelector('.input-field').style.left =
             hlTypedText.offsetWidth + 35 + 'px';
+
     } else {
         currentWord.classList.add(
             compareLetter(input) ? 'correctLetter' : 'incorrectLetter'
@@ -174,7 +176,6 @@ function displayText(completedWord, input) {
     [hlTypedText, currentWord, remainingText].forEach(e => {
         currentLine.appendChild(e);
     });
-    console.log(hlTypedText.textContent);
 }
 
 var inputElement = document.querySelector('.input-field');
@@ -182,7 +183,15 @@ inputElement.value = '';
 inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-        if ((typedWords + e.target.value).length + 1 === code.length) {
+
+        var lengthOfTypedWords = 0;
+        typedWords.forEach(e => {
+            lengthOfTypedWords = lengthOfTypedWords + e.length;
+        });
+        
+        var stripedCode = code.split(" ");
+        stripedCode = stripedCode.join("");
+        if ((lengthOfTypedWords + e.target.value.length) === stripedCode.length) {
             typedWords.push(e.target.value);
             if (compareInput()) {
                 e.target.value = '';
@@ -195,7 +204,7 @@ inputElement.addEventListener('keydown', e => {
                 code = document.getElementById('lineContent' + currentLineIndex).textContent;
                 codeWords = code.split(' ');
                 typedWords = [];
-                console.log(code);
+
             }
         }
 
