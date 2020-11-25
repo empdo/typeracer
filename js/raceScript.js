@@ -134,6 +134,11 @@ function compareLetter(input) {
     }
 }
 
+
+function moveInput(){
+
+}
+
 /**
  * @param {boolean} completedWord
  * @param {String} input
@@ -169,6 +174,7 @@ function displayText(completedWord, input) {
                 : document.getElementById('indent' + nextLineIndex);
         document.querySelector('.input-field').style.left =
             objToOffset.offsetWidth + 'px';
+        document.querySelector('.input-field').style.top = (nextLineIndex * 15.4) + "px";
 
         hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
@@ -222,6 +228,8 @@ inputElement.addEventListener('keydown', e => {
                 ) {
                     //! yterst tillfällig ska egentligen loada ny snippet
                     currentLineIndex = currentLineIndex + 1;
+                }else{
+                    loadSnippets();
                 }
 
                 code = document.getElementById('lineContent' + currentLineIndex)
