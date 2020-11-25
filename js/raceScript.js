@@ -22,7 +22,7 @@ function getRandom(list) {
 // }
 
 function loadSnippets(lang) {
-    var tmpSnippet = "def sak():\n    print('fiskmås')";
+    var tmpSnippet = "def sak():\n    print('fiskmås')\n    print('nej')";
 
     tmpSnippet = tmpSnippet.split('\n');
 
@@ -53,7 +53,7 @@ function setSnippet(snippet) {
                     lineContent.textContent = e.slice(j);
                     lineContent.id = "lineContent" +i;
                     var indenting = document.createElement("span");
-                    indenting.textContent = (" ").repeat(j);
+                    indenting.textContent = ("-").repeat(j);
                     break;
                 }
             }
