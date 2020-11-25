@@ -124,6 +124,8 @@ html {
 
     position: relative;
     text-align: center;
+
+    float: right;
 }
 
 #right-block-container {

@@ -3,6 +3,7 @@
 var code = '';
 var snippets;
 var currentLineIndex = 0;
+var nextLineIndex = 0;
 
 /**
  * @type {String[]}
@@ -48,19 +49,21 @@ function setSnippet(snippet) {
             line.id = 'line' + i;
 
             var lineContent = document.createElement('span');
-            for (var j=0; j < e.length; j++){
-                if (e[j] !== " "){
+            for (var j = 0; j < e.length; j++) {
+                if (e[j] !== ' ') {
                     lineContent.textContent = e.slice(j);
-                    lineContent.id = "lineContent" +i;
-                    var indenting = document.createElement("span");
-                    indenting.textContent = (" ").repeat(j);
+                    lineContent.id = 'lineContent' + i;
+
+                    var indenting = document.createElement('span');
+                    indenting.textContent = ' '.repeat(j);
+                    indenting.id = 'indent' + i;
                     break;
                 }
             }
 
             var lineHlTypedText = document.createElement('span');
             lineHlTypedText.id = 'hlTypedText-line' + i;
-            
+
             line.append(indenting);
             line.append(lineContent);
             line.append(lineHlTypedText);
@@ -70,7 +73,9 @@ function setSnippet(snippet) {
             textField.append(line);
         });
 
-        var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
+        var hlTypedText = document.getElementById(
+            'hlTypedText-line' + currentLineIndex
+        );
 
         code = document.getElementById('lineContent0').textContent;
         codeWords = code.split(' ');
@@ -78,7 +83,7 @@ function setSnippet(snippet) {
         hlTypedText.textContent = '';
 
         document.querySelector('.input-field').style.left =
-            hlTypedText.offsetWidth + 35 + 'px';
+            hlTypedText.offsetWidth + 'px';
     }
 }
 
@@ -134,7 +139,9 @@ function compareLetter(input) {
 function displayText(completedWord, input) {
     var typedText = typedWords.join(' ');
     var currentWord = document.createElement('span');
-    var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
+    var hlTypedText = document.getElementById(
+        'hlTypedText-line' + currentLineIndex
+    );
 
     input = input ? input : '';
 
@@ -150,17 +157,26 @@ function displayText(completedWord, input) {
 
         currentWord.textContent = '';
         tmpInputValue = '';
-        document.querySelector('.input-field').style.left =
-            hlTypedText.offsetWidth + 35 + 'px';
 
+        var hlTypedText = document.getElementById(
+            'hlTypedText-line' + nextLineIndex
+        );
+        var objToOffset =
+            hlTypedText.offsetWidth > 0 //TODO: GÖR EN EGEN JÄVLA FUNktion för der så man slipper skrica om hltypedtext
+                ? hlTypedText
+                : document.getElementById('indent' + nextLineIndex);
+        document.querySelector('.input-field').style.left =
+            objToOffset.offsetWidth + 'px';
+
+        var hlTypedText = document.getElementById(
+            'hlTypedText-line' + currentLineIndex
+        );
     } else {
         currentWord.classList.add(
             compareLetter(input) ? 'correctLetter' : 'incorrectLetter'
         );
         currentWord.textContent = input;
     }
-
-
 
     // if (typedText.length >= code.length) {
     //     setSnippet();
@@ -183,32 +199,36 @@ inputElement.value = '';
 inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-
         var lengthOfTypedWords = 0;
         typedWords.forEach(e => {
             lengthOfTypedWords = lengthOfTypedWords + e.length;
         });
-        
-        var stripedCode = code.split(" ");
-        stripedCode = stripedCode.join("");
-        if ((lengthOfTypedWords + e.target.value.length) === stripedCode.length) {
+
+        var stripedCode = code.split(' ');
+        stripedCode = stripedCode.join('');
+        if (lengthOfTypedWords + e.target.value.length === stripedCode.length) {
             typedWords.push(e.target.value);
             if (compareInput()) {
+                nextLineIndex += 1;
                 e.target.value = '';
                 displayText(true);
 
-                if (document.getElementById("lineContent" + (currentLineIndex+1))){ //! yterst tillfällig ska egentligen loada ny snippet
-                    currentLineIndex = currentLineIndex + 1
+                if (
+                    document.getElementById(
+                        'lineContent' + (currentLineIndex + 1)
+                    )
+                ) {
+                    //! yterst tillfällig ska egentligen loada ny snippet
+                    currentLineIndex = currentLineIndex + 1;
                 }
-        
-                code = document.getElementById('lineContent' + currentLineIndex).textContent;
+
+                code = document.getElementById('lineContent' + currentLineIndex)
+                    .textContent;
+
                 codeWords = code.split(' ');
                 typedWords = [];
-
             }
         }
-
-
 
         // document.querySelector('.input-field').style.left =
         //     hlTypedText.offsetWidth + 35 + 'px';
