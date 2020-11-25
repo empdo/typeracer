@@ -228,8 +228,6 @@ inputElement.addEventListener('keydown', e => {
                 ) {
                     //! yterst tillfällig ska egentligen loada ny snippet
                     currentLineIndex = currentLineIndex + 1;
-                }else{
-                    loadSnippets();
                 }
 
                 code = document.getElementById('lineContent' + currentLineIndex)
