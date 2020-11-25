@@ -22,7 +22,7 @@ function getRandom(list) {
 // }
 
 function loadSnippets(lang) {
-    var tmpSnippet = "def sak():\n    hejsan('fiskmås')";
+    var tmpSnippet = "def sak():\n    print('fiskmås')";
 
     tmpSnippet = tmpSnippet.split('\n');
 
@@ -38,7 +38,6 @@ function loadSnippets(lang) {
 
 function setSnippet(snippet) {
     var textField = document.querySelector('.text-field');
-    var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
     currentLineIndex = 0;
 
     if (true) {
@@ -52,20 +51,28 @@ function setSnippet(snippet) {
             for (var j=0; j < e.length; j++){
                 if (e[j] !== " "){
                     lineContent.textContent = e.slice(j);
-                    lineContent.style.padding = j*6 + "px"; //TODO: lägg till en spantag med mellanslag som indents
+                    lineContent.id = "lineContent" +i;
+                    var indenting = document.createElement("span");
+                    indenting.textContent = (" ").repeat(j);
                     break;
                 }
             }
 
             var lineHlTypedText = document.createElement('span');
             lineHlTypedText.id = 'hlTypedText-line' + i;
-
+            
+            line.append(indenting);
             line.append(lineContent);
             line.append(lineHlTypedText);
+
+            console.log(indenting);
+
             textField.append(line);
         });
 
-        code = document.getElementById('line0').textContent;
+        var hlTypedText = document.getElementById('hlTypedText-line' + currentLineIndex);
+
+        code = document.getElementById('lineContent0').textContent;
         codeWords = code.split(' ');
         typedWords = [];
         hlTypedText.textContent = '';
@@ -162,7 +169,7 @@ function displayText(completedWord, input) {
         typedText.length + input.length + (typedWords.length === 0 ? 0 : 1)
     );
 
-    var currentLine = document.getElementById('line' + currentLineIndex);
+    var currentLine = document.getElementById('lineContent' + currentLineIndex);
     currentLine.innerHTML = '';
     [hlTypedText, currentWord, remainingText].forEach(e => {
         currentLine.appendChild(e);
@@ -183,8 +190,11 @@ inputElement.addEventListener('keydown', e => {
             }
         }
 
-        currentLineIndex = currentLineIndex + 1;
-        code = document.getElementById('line' + currentLineIndex).textContent;
+        if (document.getElementById("lineContent" + (currentLineIndex+1))){ //! yterst tillfällig ska egentligen loada ny snippet
+            currentLineIndex = currentLineIndex + 1
+        }
+        
+        code = document.getElementById('lineContent' + currentLineIndex).textContent;
         codeWords = code.split(' ');
         typedWords = [];
         console.log(code);
@@ -193,8 +203,6 @@ inputElement.addEventListener('keydown', e => {
         //     hlTypedText.offsetWidth + 35 + 'px';
 
         e.target.value = '';
-
-        displayText(false);
     }
 });
 
