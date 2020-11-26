@@ -42,22 +42,20 @@ function setSnippet(snippet) {
     var childrenToRemove = []; //tar man bort dom dirket kommer en skippas
     textField.childNodes.forEach((e, i) => {
         childrenToRemove.push(e);
-    })
-    childrenToRemove.forEach((e) => {
+    });
+    childrenToRemove.forEach(e => {
         e.parentNode.removeChild(e);
     });
 
-    document.querySelector('.input-field').style.left =
-    0 + 'px';
-    document.querySelector('.input-field').style.top =
-    0 + 'px';
+    document.querySelector('.input-field').style.left = 0 + 'px';
+    document.querySelector('.input-field').style.top = 0 + 'px';
 
     currentLineIndex = 0;
+    nextLineIndex = 0;
 
     if (true) {
         //(snippet.snippet != document.querySelector('.text-field').textContent) {
         snippet.forEach((e, i) => {
-            console.log(e);
             var line = document.createElement('div');
             line.id = 'line' + i;
 
@@ -94,8 +92,6 @@ function setSnippet(snippet) {
         codeWords = code.split(' ');
         typedWords = [];
         hlTypedText.textContent = '';
-
-
     }
 }
 
@@ -211,8 +207,8 @@ inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
         if (!document.getElementById('lineContent' + (currentLineIndex + 1))) {
-            e.target.value = "";
-            loadSnippets();
+            e.target.value = '';
+            loadSnippets('python');
         } else {
             var lengthOfTypedWords = 0;
             typedWords.forEach(e => {
