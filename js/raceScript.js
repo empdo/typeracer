@@ -131,9 +131,8 @@ function compareInput() {
 function compareLetter(input) {
     const currentLetter = codeWords[typedWords.length].slice(0, input.length);
 
-    setCpm();
-
     if (input === currentLetter) {
+        setSpeed(currentLineIndex);
         return true;
     } else {
         return false;
