@@ -12,14 +12,14 @@ function setSpeed(currentLineIndex) {
     document.getElementById('cpm').textContent =
         'cpm:' + Math.floor((amountOfCharacters * 60) / timeDiffSek);
 
-    if (
-        document.getElementById('hlTypedText-line' + currentLineIndex)
-            .childNodes[0]
-    ) {
         var hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
-        ).childNodes[0];
+        )
 
+        console.log(hlTypedText)
+    if (
+        hlTypedText
+    ) {
         hlTypedText.childNodes.forEach(e => {
             amountOfTokens += 1;
         });
