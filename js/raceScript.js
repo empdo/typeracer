@@ -131,6 +131,8 @@ function compareInput() {
 function compareLetter(input) {
     const currentLetter = codeWords[typedWords.length].slice(0, input.length);
 
+    setCpm();
+
     if (input === currentLetter) {
         return true;
     } else {
