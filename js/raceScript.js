@@ -39,6 +39,16 @@ function loadSnippets(lang) {
 
 function setSnippet(snippet) {
     var textField = document.querySelector('.text-field');
+    textField.childNodes.forEach((e, i) => {
+        console.log(e, i);
+        textField.removeChild(e);
+    })
+
+    document.querySelector('.input-field').style.left =
+    0 + 'px';
+    document.querySelector('.input-field').style.top =
+    0 + 'px';
+
     currentLineIndex = 0;
 
     if (true) {
@@ -64,11 +74,9 @@ function setSnippet(snippet) {
             var lineHlTypedText = document.createElement('span');
             lineHlTypedText.id = 'hlTypedText-line' + i;
 
-            line.append(indenting);
-            line.append(lineContent);
-            line.append(lineHlTypedText);
-
-            console.log(indenting);
+            [indenting, lineContent, lineHlTypedText].forEach(e =>
+                line.appendChild(e)
+            );
 
             textField.append(line);
         });
@@ -84,8 +92,7 @@ function setSnippet(snippet) {
         typedWords = [];
         hlTypedText.textContent = '';
 
-        document.querySelector('.input-field').style.left =
-            hlTypedText.offsetWidth + 'px';
+
     }
 }
 
@@ -114,8 +121,6 @@ function compareInput() {
     var currentWordIndex = typedWords.length - 1;
     var textToCompare = typedWords[currentWordIndex];
 
-    console.log(codeWords[currentWordIndex], textToCompare);
-
     const isCorrect = codeWords[currentWordIndex] == textToCompare;
     if (!isCorrect) {
         typedWords.pop(currentWordIndex);
@@ -124,7 +129,6 @@ function compareInput() {
 }
 
 function compareLetter(input) {
-    //borde ha det som en inline funktion men använder den på flera ställen
     const currentLetter = codeWords[typedWords.length].slice(0, input.length);
 
     if (input === currentLetter) {
@@ -132,11 +136,6 @@ function compareLetter(input) {
     } else {
         return false;
     }
-}
-
-
-function moveInput(){
-
 }
 
 /**
@@ -174,7 +173,8 @@ function displayText(completedWord, input) {
                 : document.getElementById('indent' + nextLineIndex);
         document.querySelector('.input-field').style.left =
             objToOffset.offsetWidth + 'px';
-        document.querySelector('.input-field').style.top = (nextLineIndex * 15.4) + "px";
+        document.querySelector('.input-field').style.top =
+            nextLineIndex * 15.4 + 'px';
 
         hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
@@ -207,34 +207,43 @@ inputElement.value = '';
 inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
-        var lengthOfTypedWords = 0;
-        typedWords.forEach(e => {
-            lengthOfTypedWords = lengthOfTypedWords + e.length;
-        });
+        if (!document.getElementById('lineContent' + (currentLineIndex + 1))) {
+            e.target.value = "";
+            loadSnippets();
+        } else {
+            var lengthOfTypedWords = 0;
+            typedWords.forEach(e => {
+                lengthOfTypedWords = lengthOfTypedWords + e.length;
+            });
 
-        var stripedCode = code.split(' ');
-        stripedCode = stripedCode.join('');
-        if (lengthOfTypedWords + e.target.value.length === stripedCode.length) {
-            typedWords.push(e.target.value);
-            if (compareInput()) {
-                nextLineIndex += 1;
-                e.target.value = '';
-                displayText(true);
+            var stripedCode = code.split(' ');
+            stripedCode = stripedCode.join('');
+            if (
+                lengthOfTypedWords + e.target.value.length ===
+                stripedCode.length
+            ) {
+                typedWords.push(e.target.value);
+                if (compareInput()) {
+                    nextLineIndex += 1;
+                    e.target.value = '';
+                    displayText(true);
 
-                if (
-                    document.getElementById(
-                        'lineContent' + (currentLineIndex + 1)
-                    )
-                ) {
-                    //! yterst tillfällig ska egentligen loada ny snippet
-                    currentLineIndex = currentLineIndex + 1;
+                    if (
+                        document.getElementById(
+                            'lineContent' + (currentLineIndex + 1)
+                        )
+                    ) {
+                        //! yterst tillfällig ska egentligen loada ny snippet
+                        currentLineIndex = currentLineIndex + 1;
+                    }
+
+                    code = document.getElementById(
+                        'lineContent' + currentLineIndex
+                    ).textContent;
+
+                    codeWords = code.split(' ');
+                    typedWords = [];
                 }
-
-                code = document.getElementById('lineContent' + currentLineIndex)
-                    .textContent;
-
-                codeWords = code.split(' ');
-                typedWords = [];
             }
         }
 
