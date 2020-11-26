@@ -23,7 +23,7 @@ function getRandom(list) {
 // }
 
 function loadSnippets(lang) {
-    var tmpSnippet = "def sak():\n    print('fiskmås')\n    print('nej')";
+    var tmpSnippet = "def sak():\n    print('k')\n    print('k')";
 
     tmpSnippet = tmpSnippet.split('\n');
 
@@ -39,10 +39,13 @@ function loadSnippets(lang) {
 
 function setSnippet(snippet) {
     var textField = document.querySelector('.text-field');
+    var childrenToRemove = []; //tar man bort dom dirket kommer en skippas
     textField.childNodes.forEach((e, i) => {
-        console.log(e, i);
-        textField.removeChild(e);
+        childrenToRemove.push(e);
     })
+    childrenToRemove.forEach((e) => {
+        e.parentNode.removeChild(e);
+    });
 
     document.querySelector('.input-field').style.left =
     0 + 'px';
