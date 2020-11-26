@@ -1,14 +1,13 @@
 'use strict';
 
-var timeAtStart = (timeAtStart = new Date().getTime());
-console.log(timeAtStart);
+var timeAtStart = new Date();
 var amountOfCharacters = 0;
 var amountOfTokens = 0;
 
 function setSpeed(currentLineIndex) {
     amountOfCharacters += 1;
 
-    var timeDiffSek = (new Date().getTime() - timeAtStart) / 1000;
+    var timeDiffSek = (new Date() - timeAtStart) / 1000;
     document.getElementById('cpm').textContent =
         'cpm:' + Math.floor((amountOfCharacters * 60) / timeDiffSek);
 
@@ -16,7 +15,6 @@ function setSpeed(currentLineIndex) {
             'hlTypedText-line' + currentLineIndex
         )
 
-        console.log(hlTypedText)
     if (
         hlTypedText
     ) {
