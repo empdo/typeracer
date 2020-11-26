@@ -121,6 +121,7 @@ function compareInput() {
     var textToCompare = typedWords[currentWordIndex];
 
     const isCorrect = codeWords[currentWordIndex] == textToCompare;
+    console.log(codeWords[currentWordIndex], textToCompare)
     if (!isCorrect) {
         typedWords.pop(currentWordIndex);
     }
@@ -207,8 +208,12 @@ inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
         if (!document.getElementById('lineContent' + (currentLineIndex + 1))) {
-            e.target.value = '';
-            loadSnippets('python');
+            typedWords.push(e.target.value);
+            if(compareInput()){                
+                e.target.value = '';
+                loadSnippets(currentLanguage);
+            }
+
         } else {
             var lengthOfTypedWords = 0;
             typedWords.forEach(e => {
