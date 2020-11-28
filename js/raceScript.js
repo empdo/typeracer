@@ -76,6 +76,7 @@ function setSnippet(snippet) {
 
             var lineHlTypedText = document.createElement('span');
             lineHlTypedText.id = 'hlTypedText-line' + i;
+            lineHlTypedText.classList.add("hlTypedText-line");
 
             [indenting, lineContent, lineHlTypedText].forEach(e =>
                 line.appendChild(e)
