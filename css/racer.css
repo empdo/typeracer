@@ -15,7 +15,9 @@
     padding: 0;
 }
 
-
+.remaining-text {
+    color: #ffffff5b;
+}
 
 .correctLetter {
     color: #206600;

@@ -90,8 +90,8 @@ html {
     background-color: #708f11;
     color: #1f2805;
     font-weight: bold;
-    padding-top: 2.5px;
-    padding-bottom: 2.5px;
+
+    padding: 3px;
     width: 80px;
     margin: 0px;
 
@@ -115,26 +115,55 @@ html {
     display: inline-block;
 }
 
+
+#left-block-container{
+    color: #1f2805;
+    float: left;
+}
+
+#right-block-container {
+    background-color: #2C2D29;
+
+    padding-top: 3px;
+    float: right;
+}
+
 #unix {
-    background-color: rgba(168, 161, 161, 0.093);
     color: #708f11;
+    background-color: #2C2D29;
     font-weight: bold;
     width: 60px;
-    padding: 2.5px;
 
     position: relative;
     text-align: center;
 
-    float: right;
+    float: left;
+
 }
 
-#right-block-container {
+#procent-completed{
+    padding: 3px;
+    color: #2C2D29;
     background-color: #708f11;
-    color: #1f2805;
+}
 
-    float: right;
-    padding: 2.5px;
-    padding-right: 5px;
+#cpm{
+    padding: 3px;
+    color: #2C2D29;
+    background-color: #708f11;
+}
+
+#breaksign{
+    padding: 3px;
+    color: #2C2D29;
+    background-color: #708f11;
+}
+
+#tkpm{
+    padding: 3px;
+    padding-right: 5px;;
+    color: #2C2D29;
+    background-color: #708f11;
 }
 
 #procent-completed {

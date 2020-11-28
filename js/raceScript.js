@@ -60,6 +60,8 @@ function setSnippet(snippet) {
             line.id = 'line' + i;
 
             var lineContent = document.createElement('span');
+            
+            lineContent.classList.add("remaining-text");
             for (var j = 0; j < e.length; j++) {
                 if (e[j] !== ' ') {
                     lineContent.textContent = e.slice(j);
