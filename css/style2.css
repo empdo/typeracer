@@ -20,7 +20,7 @@ html {
         'bottom bottom';
 
     grid-template-columns: auto 1fr;
-    grid-template-rows: 10% auto 10%;
+    grid-template-rows: auto, 3;
 }
 
 #side-bar {
