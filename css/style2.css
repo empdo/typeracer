@@ -8,7 +8,7 @@ html {
 }
 * {
     font-family: 'Source Code Pro', monospace;
-    font-size: 12px;
+    font-size: 18px;
 }
 #text-editor-container {
     background-color: #23241f;
@@ -60,6 +60,7 @@ html {
     background-color: #2c2d29;
     height: 23px;
     width: 100%;
+    margin-bottom: 2px;
 
     grid-area: top;
 }
@@ -68,8 +69,8 @@ html {
     background-color: #23241f;
     width: 120px;
 
-    padding-top: 3.8px;
-    padding-bottom: 3.8px;;
+    padding-left: 15px;
+    padding-right: 20px;
 
     text-align: center;
     display: inline-block;

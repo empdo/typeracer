@@ -178,7 +178,7 @@ function displayText(completedWord, input) {
         document.querySelector('.input-field').style.left =
             objToOffset.offsetWidth + 'px';
         document.querySelector('.input-field').style.top =
-            nextLineIndex * 15.4 + 'px';
+            nextLineIndex * 23 + 'px';
 
         hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
