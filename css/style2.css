@@ -79,7 +79,7 @@ html {
 #bottom-bar {
 
     background-color: #2c2d29;
-    height: 22px;
+    height: 29.5px;
     width: 100%;
 
     font-size: 13px;
@@ -135,6 +135,7 @@ html {
     font-weight: bold;
     width: 60px;
 
+    padding-right: 10px;
     position: relative;
     text-align: center;
 
