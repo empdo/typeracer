@@ -261,38 +261,33 @@ inputElement.addEventListener('keydown', e => {
         //     hlTypedText.offsetWidth + 35 + 'px';
 });
 
+function changeMode(modeToChange){
+	for (var i in mode){
+	    if (i === modeToChange){
+		mode[i] = true;
+		document.getElementById("editor-mode").textContent = modeToChange.toUpperCase();
+	    }else {
+		mode[i] = false;
+	}
+    }
+}
+
 document.addEventListener('keydown', e => {
     if (e.key === ':' && !mode["commandLine"] && !mode["insert"]){
-	for (var i in mode){
-	    if (i === "commandLine"){
-		mode[i] = true;
-	    }else {
-		mode[i] = false;
-	    }
-	}
+	changeMode("commandLine");
     
     }else if (e.key === 'Escape' && !mode["normal"]){
-	for (var i in mode){
-	    if (i === "normal"){
-		mode[i] = true;
-	    }else {
-		mode[i] = false;
-	    }
-	}
+	changeMode("normal");
+    
     }else if (e.key === 'i' && !mode["insert"]){
-	for (var i in mode){
-	    if (i === "insert"){
-		mode[i] = true;
-	    }else {
-		mode[i] = false;
-	    }
-	}
+	changeMode("insert");
     }
 
     if (e.key === ':' || e.key === 'Escape' || e.key === 'i'){
 	console.log(mode);
     }
 
+    inputElement.setAttribute('readonly', !mode["insert"]);
 });
 
     console.log(mode, mode["normal"])
