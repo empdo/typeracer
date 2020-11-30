@@ -1,6 +1,6 @@
 'use strict';
 
-var mode = {"insert": true, "normal": false, "commandLine": false};
+var mode = {"insert": false, "normal": false, "commandLine": false};
 
 var code = '';
 var snippets;
@@ -210,7 +210,6 @@ function displayText(completedWord, input) {
 
 var inputElement = document.querySelector('.input-field');
 inputElement.value = '';
-inputElement.addEventListener('input', handleInput);
 inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
         if (!document.getElementById('lineContent' + (currentLineIndex + 1))) {
@@ -266,6 +265,7 @@ function changeMode(modeToChange){
 	    if (i === modeToChange){
 		mode[i] = true;
 		document.getElementById("editor-mode").textContent = modeToChange.toUpperCase();
+		inputElement.readOnly = !mode["insert"]
 	    }else {
 		mode[i] = false;
 	}
@@ -287,9 +287,12 @@ document.addEventListener('keydown', e => {
 	console.log(mode);
     }
 
-    inputElement.setAttribute('readonly', !mode["insert"]);
 });
 
-    console.log(mode, mode["normal"])
+inputElement.addEventListener('input', handleInput);
+
+changeMode("normal");
+console.log(inputElement.readonly)
+
 loadSnippets('python');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
