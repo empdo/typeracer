@@ -288,7 +288,11 @@ document.addEventListener('keydown', e => {
 	    }
 	}
     }
-    console.log(mode);
+
+    if (e.key === ':' || e.key === 'Escape' || e.key === 'i'){
+	console.log(mode);
+    }
+
 });
 
     console.log(mode, mode["normal"])
