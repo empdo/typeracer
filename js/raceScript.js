@@ -1,5 +1,7 @@
 'use strict';
 
+var mode = {"insert": true, "normal": false, "commandLine": false};
+
 var code = '';
 var snippets;
 var currentLineIndex = 0;
@@ -254,11 +256,41 @@ inputElement.addEventListener('keydown', e => {
                 }
             }
         }
-
+    }
         // document.querySelector('.input-field').style.left =
         //     hlTypedText.offsetWidth + 35 + 'px';
-    }
 });
 
+document.addEventListener('keydown', e => {
+    if (e.key === ':' && !mode["commandLine"] && !mode["insert"]){
+	for (var i in mode){
+	    if (i === "commandLine"){
+		mode[i] = true;
+	    }else {
+		mode[i] = false;
+	    }
+	}
+    
+    }else if (e.key === 'Escape' && !mode["normal"]){
+	for (var i in mode){
+	    if (i === "normal"){
+		mode[i] = true;
+	    }else {
+		mode[i] = false;
+	    }
+	}
+    }else if (e.key === 'i' && !mode["insert"]){
+	for (var i in mode){
+	    if (i === "insert"){
+		mode[i] = true;
+	    }else {
+		mode[i] = false;
+	    }
+	}
+    }
+    console.log(mode);
+});
+
+    console.log(mode, mode["normal"])
 loadSnippets('python');
 displayText(true); // gör om displayText för den är skit och helt jälva piss
