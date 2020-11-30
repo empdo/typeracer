@@ -281,6 +281,7 @@ document.addEventListener('keydown', e => {
     
     }else if (e.key === 'i' && !mode["insert"]){
 	changeMode("insert");
+	e.preventDefault();
     }
 
     if (e.key === ':' || e.key === 'Escape' || e.key === 'i'){
