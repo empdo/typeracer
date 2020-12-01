@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 var mode = {"insert": false, "normal": false, "commandLine": false};
 

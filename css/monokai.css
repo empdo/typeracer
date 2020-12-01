@@ -1,3 +1,7 @@
+:root{
+    --bgColor: #23241F;
+    --secColor: #708F11;
+}
 body {
     background-color: #10110f;
 }
