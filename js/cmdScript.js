@@ -72,16 +72,18 @@ function loadElements(){
     console.log(inputElement);
     var inputForm = document.getElementById("cmd-container");
 
-}
-
-if (inputForm) {
     inputForm.addEventListener('submit', e => {
         e.preventDefault();
         parseCommand(inputElement.value);
         inputElement.value = "";
         return false;
     });
+
 }
+
+
+
+
 
 
 //TODO: om man kör multiplayer så blir det split screen, som vim
