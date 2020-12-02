@@ -88,6 +88,18 @@ html {
     grid-area: bottom;
 }
 
+#cmd-input{
+    width: 60px;
+
+    color: white;
+    background-color: transparent;
+    border: transparent;
+}
+
+#cmd-container{
+    color: white;
+}
+
 #editor-mode {
     background-color: var(--secColor);
     color: #1f2805;

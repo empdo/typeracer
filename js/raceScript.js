@@ -272,9 +272,24 @@ function changeMode(modeToChange){
     }
 }
 
+function commandLineMode(){
+    var cmdContainer = document.getElementById("cmd-container");
+    var cmdColon = document.createElement("span");
+    cmdColon.textContent = ":";
+    var cmdInput = document.createElement("input");
+    cmdInput.id = "cmd-input";
+
+    [cmdColon, cmdInput].forEach(e => {
+        cmdContainer.appendChild(e);
+    })
+   
+    loadElements();
+}
+
 document.addEventListener('keydown', e => {
     if (e.key === ':' && !mode["commandLine"] && !mode["insert"]){
-	changeMode("commandLine");
+	    changeMode("commandLine");
+        commandLineMode();
     
     }else if (e.key === 'Escape' && !mode["normal"]){
 	changeMode("normal");

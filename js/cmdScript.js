@@ -1,5 +1,5 @@
 'use strict';
-var cmdOutput = document.getElementById('cmd-output-container');
+var cmdOutput = document.getElementById('typeracer-container');
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
 
 class Command {
@@ -41,6 +41,7 @@ class Highlightning extends Command {
             return ; //TODO: kommer skriva över typeracer
         }
         var themeTag = document.getElementById('syntax-hl');
+        console.log(themeTag);
         themeTag.setAttribute('href', `css/${args[0]}.css`);
     }
 }
@@ -61,29 +62,26 @@ function parseCommand(command) {
         commandObj = commands[mainArg];
     }
     const templateName = commandObj.execute(args.slice(1));
-    changeCmdOutput(templateName);
+//    changeCmdOutput(templateName);
 }
 
-function changeCmdOutput(templateName) {
-    if (!templateName) return;
-    Array.from(cmdOutput.childNodes).forEach(e => {
-        cmdOutput.removeChild(e);
+var inputForm = null;
+
+function loadElements(){
+    var inputElement = document.getElementById("cmd-input");
+    console.log(inputElement);
+    var inputForm = document.getElementById("cmd-container");
+
+}
+
+if (inputForm) {
+    inputForm.addEventListener('submit', e => {
+        e.preventDefault();
+        parseCommand(inputElement.value);
+        inputElement.value = "";
+        return false;
     });
-    var temp = document.getElementById(templateName);
-    if (!temp) {
-        changeCmdOutput('help-template'); // TODO: gör error page
-        return;
-    }
-    var clon = temp.content.cloneNode(true);
-    cmdOutput.appendChild(clon);
 }
 
-var inputElement = document.querySelector('.cmd-input');
-var inputForm = document.querySelector('.cmd-form');
-inputForm.addEventListener('submit', e => {
-    e.preventDefault();
-    parseCommand(inputElement.value);
-    inputElement.value = "";
-});
 
 //TODO: om man kör multiplayer så blir det split screen, som vim
