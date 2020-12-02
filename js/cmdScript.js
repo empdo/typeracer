@@ -65,21 +65,16 @@ function parseCommand(command) {
 //    changeCmdOutput(templateName);
 }
 
-var inputForm = null;
 
-function loadElements(){
-    var inputElement = document.getElementById("cmd-input");
-    console.log(inputElement);
-    var inputForm = document.getElementById("cmd-container");
+var cmdInputElement = document.getElementById("cmd-input");
+var inputForm = document.getElementById("cmd-container");
 
-    inputForm.addEventListener('submit', e => {
-        e.preventDefault();
-        parseCommand(inputElement.value);
-        inputElement.value = "";
-        return false;
-    });
+inputForm.addEventListener('submit', e => {
+    e.preventDefault();
+    parseCommand(cmdInputElement.value);
+    inputElement.value = "";
+});
 
-}
 
 
 

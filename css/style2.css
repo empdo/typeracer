@@ -10,6 +10,8 @@ html {
     font-family: 'Source Code Pro', monospace;
     font-size: 18px;
 }
+
+
 #text-editor-container {
     background-color: var(--bgColor);
     display: grid;
@@ -89,7 +91,7 @@ html {
 }
 
 #cmd-input{
-    width: 60px;
+    width: 500px;
 
     color: white;
     background-color: transparent;

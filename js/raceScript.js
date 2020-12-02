@@ -261,7 +261,11 @@ inputElement.addEventListener('keydown', e => {
 });
 
 function changeMode(modeToChange){
-	for (var i in mode){
+    var cmdContainer = document.querySelector("#cmd-container");
+    var fileContainer = document.querySelector("#file-info-container");
+    
+
+    for (var i in mode){
 	    if (i === modeToChange){
 		mode[i] = true;
 		document.getElementById("editor-mode").textContent = modeToChange.toUpperCase();
@@ -270,31 +274,26 @@ function changeMode(modeToChange){
 		mode[i] = false;
 	}
     }
+    
+    if (modeToChange == "commandLine"){
+        cmdContainer.style.display = "inline";
+        fileContainer.style.display = "none";
+    }else {
+        cmdContainer.style.display = "none";
+        fileContainer.style.display = "inline";
+    }
+
 }
 
-function commandLineMode(){
-    var cmdContainer = document.getElementById("cmd-container");
-    var cmdColon = document.createElement("span");
-    cmdColon.textContent = ":";
-    var cmdInput = document.createElement("input");
-    cmdInput.id = "cmd-input";
-
-    [cmdColon, cmdInput].forEach(e => {
-        cmdContainer.appendChild(e);
-    })
-   
-    loadElements();
-}
 
 document.addEventListener('keydown', e => {
     if (e.key === ':' && !mode["commandLine"] && !mode["insert"]){
 	    changeMode("commandLine");
-        commandLineMode();
     
     }else if (e.key === 'Escape' && !mode["normal"]){
 	changeMode("normal");
     
-    }else if (e.key === 'i' && !mode["insert"]){
+    }else if (e.key === 'i' && !mode["insert"] && !mode["commandLine"]){
 	changeMode("insert");
 	e.preventDefault();
     }
