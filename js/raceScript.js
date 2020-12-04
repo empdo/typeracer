@@ -25,21 +25,16 @@ function getRandom(list) {
 // }
 
 function loadSnippets(lang) {
-    var tmpSnippet = "def sak():\n    print('k')\n    print('k')";
-
-    tmpSnippet = tmpSnippet.split('\n');
-
     currentLanguage = lang;
 
-    setSnippet(tmpSnippet);
-    // getSnippets(lang).then(data => {
-    //     snippets = data;
-    //     console.log(snippets);
-    //     setSnippet();
-    // });
+    getSnippets(lang).then(data => {
+         snippets = data;
+         console.log(snippets);
+         setSnippet();
+    });
 }
 
-function setSnippet(snippet) {
+function setSnippet() {
     var textField = document.querySelector('.text-field');
     var childrenToRemove = []; //tar man bort dom dirket kommer en skippas
     textField.childNodes.forEach((e, i) => {
@@ -54,6 +49,10 @@ function setSnippet(snippet) {
 
     currentLineIndex = 0;
     nextLineIndex = 0;
+
+    var snippet = getRandom(snippets).snippet.split("\n");
+    snippet = snippet.filter(e=>e);
+    console.log(snippet);
 
     if (true) {
         //(snippet.snippet != document.querySelector('.text-field').textContent) {
@@ -98,6 +97,7 @@ function setSnippet(snippet) {
         typedWords = [];
         hlTypedText.textContent = '';
     }
+    displayText(true);
 }
 
 /**
@@ -307,7 +307,6 @@ document.addEventListener('keydown', e => {
 inputElement.addEventListener('input', handleInput);
 
 changeMode("normal");
-console.log(inputElement.readonly)
+console.log(inputElement)
 
 loadSnippets('python');
-displayText(true); // gör om displayText för den är skit och helt jälva piss
