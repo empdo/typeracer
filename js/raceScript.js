@@ -298,6 +298,7 @@ document.addEventListener('keydown', e => {
     
     }else if (e.key === 'i' && !mode["insert"] && !mode["commandLine"]){
 	changeMode("insert");
+    document.querySelector(".input-field").focus();
 	e.preventDefault();
     }
 
