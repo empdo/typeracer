@@ -24,6 +24,7 @@ function getRandom(list) {
 //     this[fnName](params);
 // }
 
+
 function loadSnippets(lang) {
     currentLanguage = lang;
 
@@ -263,7 +264,8 @@ inputElement.addEventListener('keydown', e => {
 function changeMode(modeToChange){
     var cmdContainer = document.querySelector("#cmd-container");
     var fileContainer = document.querySelector("#file-info-container");
-    
+    var cmdInput = document.querySelector("#cmd-input")
+
 
     for (var i in mode){
 	    if (i === modeToChange){
@@ -278,6 +280,7 @@ function changeMode(modeToChange){
     if (modeToChange == "commandLine"){
         cmdContainer.style.display = "inline";
         fileContainer.style.display = "none";
+		cmdInput.focus();
     }else {
         cmdContainer.style.display = "none";
         fileContainer.style.display = "inline";

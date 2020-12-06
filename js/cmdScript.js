@@ -43,6 +43,7 @@ class Highlightning extends Command {
         var themeTag = document.getElementById('syntax-hl');
         console.log(themeTag);
         themeTag.setAttribute('href', `css/${args[0]}.css`);
+		localStorage.theme = args[0];
     }
 }
 
@@ -72,7 +73,7 @@ var inputForm = document.getElementById("cmd-container");
 inputForm.addEventListener('submit', e => {
     e.preventDefault();
     parseCommand(cmdInputElement.value);
-    inputElement.value = "";
+    cmdInputElement.value = "";
 });
 
 

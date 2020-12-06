@@ -1,6 +1,12 @@
 'use strict';
 
 var hasEventListner = false;
+var themeTag = document.getElementById('syntax-hl');
+
+themeTag.setAttribute('href', `css/${localStorage.theme ? localStorage.theme : "atom_one"}.css`);
+
+
+
 
 function resizeSidebar(rows) {
     var sideBar = document.getElementById('side-bar');
