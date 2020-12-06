@@ -2,7 +2,7 @@
 
 async function getSnippets(language) {
     console.log(language)
-    const questionUrl = ("http://api.essung.dev/snippets/" + (language || ""));
+    const questionUrl = ("https://api.essung.dev/snippets/" + (language || ""));
     const questionRespons = await fetch(questionUrl);
     const questionJson = await questionRespons.json();
 
