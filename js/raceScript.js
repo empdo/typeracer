@@ -217,7 +217,7 @@ inputElement.addEventListener('keydown', e => {
             typedWords.push(e.target.value);
             if(compareInput()){                
                 e.target.value = '';
-                loadSnippets(currentLanguage);
+                setSnippet(currentLanguage);
             }
 
         } else {
@@ -232,7 +232,7 @@ inputElement.addEventListener('keydown', e => {
                 lengthOfTypedWords + e.target.value.length ===
                 stripedCode.length
             ) {
-                typedWords.push(e.target.value);
+				typedWords.push(e.target.value);
                 if (compareInput()) {
                     nextLineIndex += 1;
                     e.target.value = '';
@@ -243,7 +243,7 @@ inputElement.addEventListener('keydown', e => {
                             'lineContent' + (currentLineIndex + 1)
                         )
                     ) {
-                        //! yterst tillfÃ¤llig ska egentligen loada ny snippet
+                        //! yterst tillfŠllig ska egentligen loada ny snippet
                         currentLineIndex = currentLineIndex + 1;
                     }
 

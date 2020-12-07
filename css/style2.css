@@ -25,7 +25,7 @@ html {
     grid-template-rows: auto, 3;
 }
 
-#side-bar {
+.side-bar {
     width: 25px;
 
     grid-area: mid-l;
