@@ -280,7 +280,13 @@ function changeMode(modeToChange) {
         cmdContainer.style.display = 'inline';
         fileContainer.style.display = 'none';
         cmdInput.focus();
-    } else {
+    } else if (modeToChange == 'insert'){
+	timeAtStart = new Date()	
+        document.querySelector('.input-field').focus();
+        
+	cmdContainer.style.display = 'none';
+        fileContainer.style.display = 'inline';
+    }else {
         cmdContainer.style.display = 'none';
         fileContainer.style.display = 'inline';
     }
@@ -288,12 +294,12 @@ function changeMode(modeToChange) {
 
 document.addEventListener('keydown', e => {
     if (e.key === ':' && !mode['commandLine'] && !mode['insert']) {
-        changeMode('commandLine');
+	changeMode('commandLine');
+	e.preventDefault();
     } else if (e.key === 'Escape' && !mode['normal']) {
         changeMode('normal');
-    } else if (e.key === 'i' && !mode['insert'] && !mode['commandLine']) {
+    } else if (e.key === 'i' && !mode['insert'] && !mode['commandLine']) {	
         changeMode('insert');
-        document.querySelector('.input-field').focus();
         e.preventDefault();
     }
 
