@@ -1,6 +1,7 @@
 'use strict';
 var cmdOutput = document.getElementById('typeracer-container');
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
+var availableLang = [];
 
 class Command {
     helpMsg;
@@ -28,7 +29,22 @@ class TyperacerCommand extends Command {
     helpMsg = 'Usage: typeracer <language>';
 
     execute(args) {
-        return 'typeracer-template';
+        getLanguages().then(data => {
+            availableLang = data;
+
+            if (availableLang.includes(args[0])) {
+                var typeracerContainer = document.querySelector(
+                    '.typeracer-container'
+                );
+                var landingpage = document.querySelector('#landing-page');
+                typeracerContainer.style.display = 'inline-block';
+                landingpage.style.display = 'none';
+
+		loadSnippets(args[0]);
+
+                console.log(availableLang);
+            }
+        });
     }
 }
 
@@ -37,13 +53,13 @@ class Highlightning extends Command {
 
     execute(args) {
         if (args.length === 0 || !availableHl.includes(args[0])) {
-            alert("theme not found")
-            return ; //TODO: kommer skriva över typeracer
+            alert('theme not found');
+            return; //TODO: kommer skriva över typeracer
         }
         var themeTag = document.getElementById('syntax-hl');
         console.log(themeTag);
         themeTag.setAttribute('href', `css/${args[0]}.css`);
-		localStorage.theme = args[0];
+        localStorage.theme = args[0];
     }
 }
 
@@ -63,23 +79,15 @@ function parseCommand(command) {
         commandObj = commands[mainArg];
     }
     const templateName = commandObj.execute(args.slice(1));
-//    changeCmdOutput(templateName);
+    //    changeCmdOutput(templateName);
 }
-
-
-var cmdInputElement = document.getElementById("cmd-input");
-var inputForm = document.getElementById("cmd-container");
+var cmdInputElement = document.getElementById('cmd-input');
+var inputForm = document.getElementById('cmd-container');
 
 inputForm.addEventListener('submit', e => {
     e.preventDefault();
     parseCommand(cmdInputElement.value);
-    cmdInputElement.value = "";
+    cmdInputElement.value = '';
 });
-
-
-
-
-
-
 
 //TODO: om man kör multiplayer så blir det split screen, som vim

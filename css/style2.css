@@ -11,7 +11,6 @@ html {
     font-size: 18px;
 }
 
-
 #text-editor-container {
     background-color: var(--bgColor);
     display: grid;
@@ -43,10 +42,17 @@ html {
     position: relative;
 }
 
-.typeracer-container {
+#left-side {
     grid-area: mid-r;
+}
 
+#landing-page {
+    background-color: transparent;
+}
+
+.typeracer-container {
     padding-left: 10px;
+    display: none;
 }
 
 .input-field-container {
@@ -54,8 +60,6 @@ html {
     right: 0;
     left: 0;
 }
-
-
 
 #top-bar {
     top: 0;
@@ -80,7 +84,6 @@ html {
 }
 
 #bottom-bar {
-
     background-color: #0909083b;
     height: 29.5px;
     width: 100%;
@@ -90,14 +93,13 @@ html {
     grid-area: bottom;
 }
 
-#cmd-input{
-
+#cmd-input {
     color: white;
     background-color: transparent;
     border: transparent;
 }
 
-#cmd-container{
+#cmd-container {
     color: white;
 }
 
@@ -116,8 +118,6 @@ html {
     display: inline-block;
 }
 
-
-
 #file-name-b {
     background-color: transparent;
     color: var(--secColor);
@@ -130,8 +130,7 @@ html {
     display: inline-block;
 }
 
-
-#left-block-container{
+#left-block-container {
     color: #1f2805;
     float: left;
 }
@@ -145,32 +144,32 @@ html {
     color: var(--secColor);
     font-weight: bold;
     width: 60px;
-    
+
     padding: 3px;
     padding-right: 5px;
 }
 
-#procent-completed{
+#procent-completed {
     padding: 3px;
     color: var(--bgColor);
     background-color: var(--secColor);
 }
 
-#cpm{
+#cpm {
     padding: 3px;
     color: var(--bgColor);
     background-color: var(--secColor);
 }
 
-#breaksign{
+#breaksign {
     padding: 3px;
     color: var(--bgColor);
     background-color: var(--secColor);
 }
 
-#tkpm{
+#tkpm {
     padding: 3px;
-    padding-right: 5px;;
+    padding-right: 5px;
     color: var(--bgColor);
     background-color: var(--secColor);
 }

@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-var mode = {"insert": false, "normal": false, "commandLine": false};
+var mode = {insert: false, normal: false, commandLine: false};
 
 var code = '';
 var snippets;
@@ -24,21 +24,20 @@ function getRandom(list) {
 //     this[fnName](params);
 // }
 
-
 function loadSnippets(lang) {
     currentLanguage = lang;
 
     getSnippets(lang).then(data => {
-         snippets = data;
-         console.log(snippets);
-         setSnippet();
+        snippets = data;
+        console.log(snippets);
+        setSnippet();
     });
 }
 
 function setSnippet() {
     var textField = document.querySelector('.text-field');
     var childrenToRemove = []; //tar man bort dom dirket kommer en skippas
-    textField.childNodes.forEach((e, i) => {
+    textField.childNodes.forEach(e => {
         childrenToRemove.push(e);
     });
     childrenToRemove.forEach(e => {
@@ -51,8 +50,8 @@ function setSnippet() {
     currentLineIndex = 0;
     nextLineIndex = 0;
 
-    var snippet = getRandom(snippets).snippet.split("\n");
-    snippet = snippet.filter(e=>e);
+    var snippet = getRandom(snippets).snippet.split('\n');
+    snippet = snippet.filter(e => e);
     console.log(snippet);
 
     if (true) {
@@ -62,8 +61,8 @@ function setSnippet() {
             line.id = 'line' + i;
 
             var lineContent = document.createElement('span');
-            
-            lineContent.classList.add("remaining-text");
+
+            lineContent.classList.add('remaining-text');
             for (var j = 0; j < e.length; j++) {
                 if (e[j] !== ' ') {
                     lineContent.textContent = e.slice(j);
@@ -78,7 +77,7 @@ function setSnippet() {
 
             var lineHlTypedText = document.createElement('span');
             lineHlTypedText.id = 'hlTypedText-line' + i;
-            lineHlTypedText.classList.add("hlTypedText-line");
+            lineHlTypedText.classList.add('hlTypedText-line');
 
             [indenting, lineContent, lineHlTypedText].forEach(e =>
                 line.appendChild(e)
@@ -127,7 +126,7 @@ function compareInput() {
     var textToCompare = typedWords[currentWordIndex];
 
     const isCorrect = codeWords[currentWordIndex] == textToCompare;
-    console.log(codeWords[currentWordIndex], textToCompare)
+    console.log(codeWords[currentWordIndex], textToCompare);
     if (!isCorrect) {
         typedWords.pop(currentWordIndex);
     }
@@ -215,11 +214,10 @@ inputElement.addEventListener('keydown', e => {
     if (e.key === 'Enter') {
         if (!document.getElementById('lineContent' + (currentLineIndex + 1))) {
             typedWords.push(e.target.value);
-            if(compareInput()){                
+            if (compareInput()) {
                 e.target.value = '';
                 setSnippet(currentLanguage);
             }
-
         } else {
             var lengthOfTypedWords = 0;
             typedWords.forEach(e => {
@@ -232,7 +230,7 @@ inputElement.addEventListener('keydown', e => {
                 lengthOfTypedWords + e.target.value.length ===
                 stripedCode.length
             ) {
-				typedWords.push(e.target.value);
+                typedWords.push(e.target.value);
                 if (compareInput()) {
                     nextLineIndex += 1;
                     e.target.value = '';
@@ -257,60 +255,56 @@ inputElement.addEventListener('keydown', e => {
             }
         }
     }
-        // document.querySelector('.input-field').style.left =
-        //     hlTypedText.offsetWidth + 35 + 'px';
+    // document.querySelector('.input-field').style.left =
+    //     hlTypedText.offsetWidth + 35 + 'px';
 });
 
-function changeMode(modeToChange){
-    var cmdContainer = document.querySelector("#cmd-container");
-    var fileContainer = document.querySelector("#file-info-container");
-    var cmdInput = document.querySelector("#cmd-input")
+function changeMode(modeToChange) {
+    var cmdContainer = document.querySelector('#cmd-container');
+    var fileContainer = document.querySelector('#file-info-container');
+    var cmdInput = document.querySelector('#cmd-input');
 
-
-    for (var i in mode){
-	    if (i === modeToChange){
-		mode[i] = true;
-		document.getElementById("editor-mode").textContent = modeToChange.toUpperCase();
-		inputElement.readOnly = !mode["insert"]
-	    }else {
-		mode[i] = false;
-	}
-    }
-    
-    if (modeToChange == "commandLine"){
-        cmdContainer.style.display = "inline";
-        fileContainer.style.display = "none";
-		cmdInput.focus();
-    }else {
-        cmdContainer.style.display = "none";
-        fileContainer.style.display = "inline";
+    for (var i in mode) {
+        if (i === modeToChange) {
+            mode[i] = true;
+            document.getElementById(
+                'editor-mode'
+            ).textContent = modeToChange.toUpperCase();
+            inputElement.readOnly = !mode['insert'];
+        } else {
+            mode[i] = false;
+        }
     }
 
+    if (modeToChange == 'commandLine') {
+        cmdContainer.style.display = 'inline';
+        fileContainer.style.display = 'none';
+        cmdInput.focus();
+    } else {
+        cmdContainer.style.display = 'none';
+        fileContainer.style.display = 'inline';
+    }
 }
 
-
 document.addEventListener('keydown', e => {
-    if (e.key === ':' && !mode["commandLine"] && !mode["insert"]){
-	    changeMode("commandLine");
-    
-    }else if (e.key === 'Escape' && !mode["normal"]){
-	changeMode("normal");
-    
-    }else if (e.key === 'i' && !mode["insert"] && !mode["commandLine"]){
-	changeMode("insert");
-    document.querySelector(".input-field").focus();
-	e.preventDefault();
+    if (e.key === ':' && !mode['commandLine'] && !mode['insert']) {
+        changeMode('commandLine');
+    } else if (e.key === 'Escape' && !mode['normal']) {
+        changeMode('normal');
+    } else if (e.key === 'i' && !mode['insert'] && !mode['commandLine']) {
+        changeMode('insert');
+        document.querySelector('.input-field').focus();
+        e.preventDefault();
     }
 
-    if (e.key === ':' || e.key === 'Escape' || e.key === 'i'){
-	console.log(mode);
+    if (e.key === ':' || e.key === 'Escape' || e.key === 'i') {
+        console.log(mode);
     }
-
 });
 
 inputElement.addEventListener('input', handleInput);
 
-changeMode("normal");
-console.log(inputElement)
+changeMode('normal');
+console.log(inputElement);
 
-loadSnippets('python');
+

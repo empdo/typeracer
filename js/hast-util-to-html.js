@@ -963,7 +963,7 @@ function ccount(value, character) {
 
 },{}],19:[function(require,module,exports){
 module.exports={
-  "nbsp": " ",
+  "nbsp": " ",
   "iexcl": "¡",
   "cent": "¢",
   "pound": "£",
@@ -1292,7 +1292,7 @@ module.exports={
   "macr": "¯",
   "micro": "µ",
   "middot": "·",
-  "nbsp": " ",
+  "nbsp": " ",
   "not": "¬",
   "ntilde": "ñ",
   "oacute": "ó",
