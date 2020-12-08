@@ -47,7 +47,11 @@ html {
 }
 
 #landing-page {
+    display: grid;
     background-color: transparent;
+    text-align: center;
+    align-content: center;
+    height: 100%;
 }
 
 .typeracer-container {
