@@ -53,6 +53,17 @@ html {
     align-content: center;
     height: 100%;
 }
+#title {
+    padding-bottom: 10px;
+}
+
+#info {
+    padding-bottom: 20px;
+}
+
+#commands {
+    padding-bottom: 20px;
+}
 
 .typeracer-container {
     padding-left: 10px;
