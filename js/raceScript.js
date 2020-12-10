@@ -54,8 +54,7 @@ function setSnippet() {
     snippet = snippet.filter(e => e);
     console.log(snippet);
 
-    if (true) {
-        //(snippet.snippet != document.querySelector('.text-field').textContent) {
+    if (snippet != document.querySelector('.text-field').textContent) {
         snippet.forEach((e, i) => {
             var line = document.createElement('div');
             line.id = 'line' + i;
@@ -175,10 +174,11 @@ function displayText(completedWord, input) {
         );
         var objToOffset =
             hlTypedText.offsetWidth > 0 //TODO: GÖR EN EGEN JÄVLA FUNktion för der så man slipper skrica om hltypedtext
-                ? hlTypedText
-                : document.getElementById('indent' + nextLineIndex);
+                ? hlTypedText.offsetWidth + document.getElementById('indent' + nextLineIndex).offsetWidth
+                : document.getElementById('indent' + nextLineIndex).offsetWidth;
         document.querySelector('.input-field').style.left =
-            objToOffset.offsetWidth + 'px';
+            objToOffset + 'px';
+	console.log(objToOffset, objToOffset.offsetWidth)
         document.querySelector('.input-field').style.top =
             nextLineIndex * 23 + 'px';
 
