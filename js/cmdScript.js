@@ -31,7 +31,8 @@ class TyperacerCommand extends Command {
     helpMsg = `Usage: typeracer <${getLanguages().then(data => {return(data)})}>`;
 
     execute(args) {
-            var availableLang = getLanguages().then(data => {return(data)});
+        getLanguages().then(data => {
+            availableLang = data;
 
             if (availableLang.includes(args[0])) {
                 var typeracerContainer = document.querySelector(
@@ -41,10 +42,11 @@ class TyperacerCommand extends Command {
                 typeracerContainer.style.display = 'inline-block';
                 landingpage.style.display = 'none';
 
-                loadSnippets(args[0]);
+		loadSnippets(args[0]);
 
                 console.log(availableLang);
             }
+        });
     }
 }
 
