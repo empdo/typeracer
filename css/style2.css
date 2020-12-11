@@ -21,7 +21,7 @@ html {
         'mid-l mid-r'
         'bottom bottom';
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto auto;
     grid-template-rows: auto, 3;
 }
 
@@ -49,7 +49,7 @@ html {
     grid-template-columns: 1fr 99fr;
 }
 #right-side {
-    display: grid;
+    display: none;
     grid-area: mid-r;
     grid-template-areas: 'sidebar main-area';
     grid-template-columns: auto auto;
@@ -59,6 +59,7 @@ html {
 }
 #help-page {
     grid-area: main-area;
+    padding-right: 15px;
 }
 
 #landing-page {
@@ -124,7 +125,7 @@ html {
 
     grid-area: right;
     text-align: center;
-    display: inline-block;
+    display: none;
 }
 
 #bottom-bar {

@@ -11,49 +11,51 @@ themeTag.setAttribute(
 
 function resizeSidebar(textField) {
     rows = textField ? textField.childNodes.length : rows;
-    console.log(rows)
-    	
+    console.log(rows);
+
     var sideBar = document.querySelectorAll('.side-bar');
     sideBar.forEach(e => {
         e.innerHTML = '';
     });
     sideBar.forEach(e => {
+        if (window.getComputedStyle(e.parentNode).display !== 'none') {
+            console.log('he');
+            var i = 1;
+            while (notOverflowing()) {
+                var number = document.createElement('span');
+                if (i < rows + 1 /*number of rows of code */) {
+                    number.textContent = i;
+                    number.className = 'side-bar-number';
+                } else {
+                    number.textContent = '~';
+                    number.classList = 'side-bar-symbol';
+                    number.id = 'side-bar-index' + i;
+                }
 
-	console.log("he")
-        var i = 1;
-        while (notOverflowing()) {	
-            var number = document.createElement('span');
-            if (i < rows + 1 /*number of rows of code */) {
-                number.textContent = i;
-                number.className = 'side-bar-number';
-            } else {
-                number.textContent = '~';
-                number.classList = 'side-bar-symbol';
-                number.id = 'side-bar-index' + i;
+                e.appendChild(number);
+                i++;
             }
 
-            e.appendChild(number);
-            i++;
-        }
-
-        var lastSymbol = document.getElementById('side-bar-index' + (i - 1));
-        lastSymbol.parentNode.removeChild(lastSymbol);
-
-        function notOverflowing() {
-
-		console.log(
-                document.getElementById('text-editor-container').scrollHeight,
-                window.innerHeight);
-            return (
-                document.getElementById('text-editor-container').scrollHeight <
-                window.innerHeight
+            var lastSymbol = document.getElementById(
+                'side-bar-index' + (i - 1)
             );
-        }
-        if (!hasEventListner) {
-            window.addEventListener('resize', e => resizeSidebar());
-            hasEventListner = true;
+            lastSymbol.parentNode.removeChild(lastSymbol);
         }
     });
+    function notOverflowing() {
+        console.log(
+            document.getElementById('text-editor-container').scrollHeight,
+            window.innerHeight
+        );
+        return (
+            document.getElementById('text-editor-container').scrollHeight <
+            window.innerHeight
+        );
+    }
+    if (!hasEventListner) {
+        window.addEventListener('resize', e => resizeSidebar());
+        hasEventListner = true;
+    }
 }
 
 resizeSidebar();

@@ -1,4 +1,7 @@
 'use strict';
+var helpContainer = document.querySelector('#right-side');
+var helpFileName = document.querySelector('#help-file-name');
+var helpPage = document.querySelector('#help-page');
 var cmdOutput = document.getElementById('typeracer-container');
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
 var availableLang = [];
@@ -49,11 +52,14 @@ class TyperacerCommand extends Command {
 }
 
 class Highlightning extends Command {
-    helpMsg = 'Usage: hl <list of options>';
+    helpMsg = 'Usage: hl <atom_one, monokai, solarized, dracul>';
 
     execute(args) {
         if (args.length === 0 || !availableHl.includes(args[0])) {
-            alert('theme not found');
+            helpContainer.style.display = "grid";
+	    helpFileName.style.display = "inline-block";
+	    helpPage.textContent = this.helpMsg;
+	    resizeSidebar();
             return; //TODO: kommer skriva över typeracer
         }
         var themeTag = document.getElementById('syntax-hl');
@@ -63,10 +69,19 @@ class Highlightning extends Command {
     }
 }
 
+class CloseWindow extends Command {
+    helpMsg = 'closes stuff'
+
+    execute(args){
+        helpContainer.style.display = "none";
+	helpFileName.style.display = "none";
+    };
+}
 const commands = {
     help: new HelpCommand(),
     typeracer: new TyperacerCommand(),
     hl: new Highlightning(),
+    q: new CloseWindow(),
 };
 
 const defaultCommand = new Command();
