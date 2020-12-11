@@ -4,7 +4,6 @@ var helpFileName = document.querySelector('#help-file-name');
 var helpPage = document.querySelector('#help-page');
 var cmdOutput = document.getElementById('typeracer-container');
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
-var availableLang = [];
 
 class Command {
     helpMsg;
@@ -29,11 +28,10 @@ class HelpCommand extends Command {
 }
 
 class TyperacerCommand extends Command {
-    helpMsg = 'Usage: typeracer <language>';
+    helpMsg = `Usage: typeracer <${getLanguages().then(data => {return(data)})}>`;
 
     execute(args) {
-        getLanguages().then(data => {
-            availableLang = data;
+            var availableLang = getLanguages().then(data => {return(data)});
 
             if (availableLang.includes(args[0])) {
                 var typeracerContainer = document.querySelector(
@@ -43,11 +41,10 @@ class TyperacerCommand extends Command {
                 typeracerContainer.style.display = 'inline-block';
                 landingpage.style.display = 'none';
 
-		loadSnippets(args[0]);
+                loadSnippets(args[0]);
 
                 console.log(availableLang);
             }
-        });
     }
 }
 
@@ -56,10 +53,10 @@ class Highlightning extends Command {
 
     execute(args) {
         if (args.length === 0 || !availableHl.includes(args[0])) {
-            helpContainer.style.display = "grid";
-	    helpFileName.style.display = "inline-block";
-	    helpPage.textContent = this.helpMsg;
-	    resizeSidebar();
+            helpContainer.style.display = 'grid';
+            helpFileName.style.display = 'inline-block';
+            helpPage.textContent = this.helpMsg;
+            resizeSidebar();
             return; //TODO: kommer skriva över typeracer
         }
         var themeTag = document.getElementById('syntax-hl');
@@ -69,19 +66,37 @@ class Highlightning extends Command {
     }
 }
 
-class CloseWindow extends Command {
-    helpMsg = 'closes stuff'
+class List extends Command {
+    execute(args) {
+	    console.log("hej1")
+        if (args[0] === 'hl') {
+            helpContainer.style.display = 'grid';
+            helpFileName.style.display = 'inline-block';
+            helpPage.textContent = new Highlightning().helpMsg;
+            resizeSidebar();
+        }else if (args[0] === 'langs'){
+            helpContainer.style.display = 'grid';
+            helpFileName.style.display = 'inline-block';
+            helpPage.textContent = new TyperacerCommand().helpMsg;
+            resizeSidebar();
+	}
+    }
+}
 
-    execute(args){
-        helpContainer.style.display = "none";
-	helpFileName.style.display = "none";
-    };
+class CloseWindow extends Command {
+    helpMsg = 'closes stuff';
+
+    execute(args) {
+        helpContainer.style.display = 'none';
+        helpFileName.style.display = 'none';
+    }
 }
 const commands = {
     help: new HelpCommand(),
     typeracer: new TyperacerCommand(),
     hl: new Highlightning(),
     q: new CloseWindow(),
+    ls: new List(),
 };
 
 const defaultCommand = new Command();
