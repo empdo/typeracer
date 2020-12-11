@@ -3,6 +3,12 @@ var helpContainer = document.querySelector('#right-side');
 var helpFileName = document.querySelector('#help-file-name');
 var helpPage = document.querySelector('#help-page');
 var cmdOutput = document.getElementById('typeracer-container');
+
+var availableLang = [];
+getLanguages().then(data => {
+	availableLang = data;
+})
+
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
 var availableLang = [];
 
@@ -29,12 +35,9 @@ class HelpCommand extends Command {
 }
 
 class TyperacerCommand extends Command {
-    helpMsg = `Usage: typeracer <${getLanguages().then(data => {return(data)})}>`;
+    helpMsg = `Usage: typeracer <${availableLang}>`;
 
     execute(args) {
-        getLanguages().then(data => {
-            availableLang = data;
-
             if (availableLang.includes(args[0])) {
                 var typeracerContainer = document.querySelector(
                     '.typeracer-container'
@@ -46,9 +49,8 @@ class TyperacerCommand extends Command {
 		loadSnippets(args[0]);
 
                 console.log(availableLang);
-            }
-        });
     }
+}
 }
 
 class Highlightning extends Command {
