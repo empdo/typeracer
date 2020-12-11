@@ -4,6 +4,7 @@ var helpFileName = document.querySelector('#help-file-name');
 var helpPage = document.querySelector('#help-page');
 var cmdOutput = document.getElementById('typeracer-container');
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
+var availableLang = [];
 
 class Command {
     helpMsg;
