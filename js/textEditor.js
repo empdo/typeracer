@@ -2,19 +2,26 @@
 
 var hasEventListner = false;
 var themeTag = document.getElementById('syntax-hl');
+var rows = 0;
 
 themeTag.setAttribute(
     'href',
     `css/${localStorage.theme ? localStorage.theme : 'atom_one'}.css`
 );
 
-function resizeSidebar(rows) {
+function resizeSidebar(textField) {
+    rows = textField ? textField.childNodes.length : rows;
+    console.log(rows)
+    	
     var sideBar = document.querySelectorAll('.side-bar');
     sideBar.forEach(e => {
         e.innerHTML = '';
+    });
+    sideBar.forEach(e => {
 
+	console.log("he")
         var i = 1;
-        while (notOverflowing()) {
+        while (notOverflowing()) {	
             var number = document.createElement('span');
             if (i < rows + 1 /*number of rows of code */) {
                 number.textContent = i;
@@ -33,16 +40,20 @@ function resizeSidebar(rows) {
         lastSymbol.parentNode.removeChild(lastSymbol);
 
         function notOverflowing() {
+
+		console.log(
+                document.getElementById('text-editor-container').scrollHeight,
+                window.innerHeight);
             return (
                 document.getElementById('text-editor-container').scrollHeight <
                 window.innerHeight
             );
         }
         if (!hasEventListner) {
-            window.addEventListener('resize', e => resizeSidebar(rows));
+            window.addEventListener('resize', e => resizeSidebar());
             hasEventListner = true;
         }
     });
 }
 
-resizeSidebar(0);
+resizeSidebar();

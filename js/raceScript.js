@@ -85,7 +85,7 @@ function setSnippet() {
             textField.append(line);
         });
 
-        resizeSidebar(snippet.length);
+        resizeSidebar(document.querySelector(".text-field"));
 
         var hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex

@@ -9,6 +9,7 @@ html {
 * {
     font-family: 'Source Code Pro', monospace;
     font-size: 18px;
+    box-sizing: border-box;
 }
 
 #text-editor-container {
@@ -20,14 +21,13 @@ html {
         'mid-l mid-r'
         'bottom bottom';
 
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: auto, 3;
 }
 
 .side-bar {
     width: 25px;
-
-    grid-area: mid-l;
+    grid-area: 'sidebar';
 }
 
 .side-bar-number {
@@ -43,15 +43,31 @@ html {
 }
 
 #left-side {
+    grid-area: mid-l;
+    display: grid;
+    grid-template-areas: 'sidebar main-area';
+    grid-template-columns: 1fr 99fr;
+}
+#right-side {
+    display: grid;
     grid-area: mid-r;
+    grid-template-areas: 'sidebar main-area';
+    grid-template-columns: auto auto;
+}
+#help-sidebar {
+    grid-area: sidebar;
+}
+#help-page {
+    grid-area: main-area;
 }
 
 #landing-page {
+    grid-area: main-area;
     display: grid;
     background-color: transparent;
     text-align: center;
     align-content: center;
-    height: 100%;
+    width: 100%;
 }
 #title {
     padding-bottom: 10px;
@@ -68,6 +84,7 @@ html {
 .typeracer-container {
     padding-left: 10px;
     display: none;
+    justify-self: left;
 }
 
 .input-field-container {
@@ -78,13 +95,15 @@ html {
 
 #top-bar {
     top: 0;
+    grid-area: top;
 
     background-color: #0909083b;
     height: 23px;
     width: 100%;
     margin-bottom: 2px;
 
-    grid-area: top;
+    display: grid;
+    grid-template-areas: 'left right';
 }
 
 #file-name-t {
@@ -94,6 +113,16 @@ html {
     padding-left: 15px;
     padding-right: 20px;
 
+    text-align: center;
+    display: inline-block;
+
+    grid-area: left;
+}
+#help-file-name {
+    background-color: var(--bgColor);
+    width: 120px;
+
+    grid-area: right;
     text-align: center;
     display: inline-block;
 }
