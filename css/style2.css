@@ -47,12 +47,14 @@ html {
     display: grid;
     grid-template-areas: 'sidebar main-area';
     grid-template-columns: 1fr 99fr;
+    width: 100%;
 }
 #right-side {
     display: none;
     grid-area: mid-r;
     grid-template-areas: 'sidebar main-area';
     grid-template-columns: auto auto;
+    width: 100%;
 }
 #help-sidebar {
     grid-area: sidebar;
