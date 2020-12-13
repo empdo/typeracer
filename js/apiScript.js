@@ -16,3 +16,22 @@ async function getLanguages() {
 
     return langJson;
 }
+
+async function getLeaderboad() {
+
+    const lBUrl = "https://api.essung.dev/leaderboard";
+    const lBRespons = await fetch(lBUrl);
+    const lBJson = await lBRespons.json();
+
+    return lBJson;
+}
+
+async function getUserInfo(id){
+
+    const userUrl = "https://api.github.com/user/" + id;
+    const userRespons = await fetch(userUrl);
+    const userJson = await userRespons.json();
+	console.log({"name": userJson["login"], "profilePic": userJson["avatar_url"]})
+
+    return {"login": userJson["login"], "avatar_url": userJson["avatar_url"]};
+}
