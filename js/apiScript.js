@@ -37,7 +37,6 @@ async function getUserInfo(id){
 }
 
 async function userToken(code){
-
     const tokenUrl = "https://api.essung.dev/token/" + code;
     const tokenRespons = await fetch(tokenUrl);
     const tokenJson = await tokenRespons.json();
