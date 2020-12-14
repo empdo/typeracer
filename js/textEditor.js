@@ -43,10 +43,6 @@ function resizeSidebar(textField) {
         }
     });
     function notOverflowing() {
-        console.log(
-            document.getElementById('text-editor-container').scrollHeight,
-            window.innerHeight
-        );
         return (
             document.getElementById('text-editor-container').scrollHeight <
             window.innerHeight

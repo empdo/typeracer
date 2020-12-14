@@ -99,7 +99,7 @@ class CloseWindow extends Command {
 class Login extends Command {
     helpMsg = "Usage: authorize with github"
     execute(){
-	window.location.replace("https://github.com/login/oauth/authorize?client_id=9b3060d8b4ddf1f2a7b8&redirect_uri=${encodeURIComponent(window.location.origin + '/login.html')}")
+	window.location.replace(`https://github.com/login/oauth/authorize?client_id=9b3060d8b4ddf1f2a7b8&redirect_uri=${encodeURIComponent(window.location.origin + '/login.html')}`)
     }
 }
 const commands = {
