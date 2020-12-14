@@ -197,12 +197,11 @@ html {
     padding-right: 5px;
 }
 
-img[src=''],
-img {
+img[src=''] {
     display: none;
 }
 
-img[src] {
+img {
     display: block;
 }
 
