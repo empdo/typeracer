@@ -96,12 +96,19 @@ class CloseWindow extends Command {
         helpFileName.style.display = 'none';
     }
 }
+class Login extends Command {
+    helpMsg = "Usage: authorize with github"
+    extends(){
+	window.location.replace("https://github.com/login/oauth/authorize?client_id=9b3060d8b4ddf1f2a7b8")
+    }
+}
 const commands = {
     help: new HelpCommand(),
     typeracer: new TyperacerCommand(),
     hl: new Highlightning(),
     q: new CloseWindow(),
     ls: new List(),
+    logon: new Login(),
 };
 
 const defaultCommand = new Command();
