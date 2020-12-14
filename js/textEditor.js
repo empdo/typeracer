@@ -58,12 +58,13 @@ if (localStorage.token) {
     getLoggedInUserInfo().then(data => {
         if (data) {
             var container = document.querySelector('#unix');
-            container.innerHTML = '';
+	    var bar = document.querySelector('#bottom-bar')
             var profilePic = document.createElement('img');
             var username = document.createElement('span');
-            profilePic.src = data['avatar_url'] + '&size=32';
+            profilePic.src = data['avatar_url'] + `&size=${bar.clientHeight}`;
             username.textContent = data['login'];
 
+            container.innerHTML = '';
             [username, profilePic].forEach(e => {
                 container.appendChild(e);
             });

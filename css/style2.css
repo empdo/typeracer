@@ -134,6 +134,7 @@ html {
     background-color: #0909083b;
     height: 29.5px;
     width: 100%;
+    display: flex;
 
     font-size: 13px;
 
