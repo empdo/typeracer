@@ -44,10 +44,11 @@ async function userToken(code){
     return tokenJson["access_token"];
 } 
 async function getLoggedInUserInfo(){
-	var response =  await(await fetch("https://api.github.com/user", headers = {Authorization: {"token" : localStorage.token}})).json();
+	var response =  await fetch("https://api.github.com/user", headers = {Authorization: "token " + localStorage.token})
 
 	if (!response.ok){
 		localStorage.token = "";	
 		return null;
 	}
+	return await response.json();
 }
