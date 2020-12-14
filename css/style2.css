@@ -132,10 +132,11 @@ html {
 
 #bottom-bar {
     background-color: #0909083b;
-    height: 29.5px;
+    height: 30px;
     width: 100%;
-    display: flex;
 
+    display: flex;
+    align-items: center;
     font-size: 13px;
 
     grid-area: bottom;
@@ -178,48 +179,45 @@ html {
     display: inline-block;
 }
 
+#space-inbetween {
+    flex-grow: 1;
+}
+
 #left-block-container {
     color: #1f2805;
-    float: left;
 }
 
 #right-block-container {
-    padding-top: 3px;
-    float: right;
+    background-color: var(--secColor);
+    padding: 3px;
 }
 
-#unix {
+#username {
     color: var(--secColor);
-    font-weight: bold;
-    width: 60px;
-
-    padding: 3px;
     padding-right: 5px;
 }
 
-#procent-completed {
-    padding: 3px;
-    color: var(--bgColor);
-    background-color: var(--secColor);
+img[src=''],
+img {
+    display: none;
 }
 
-#cpm {
-    padding: 3px;
-    color: var(--bgColor);
-    background-color: var(--secColor);
+img[src] {
+    display: block;
 }
 
-#breaksign {
-    padding: 3px;
+#procent-completed,
+#cpm,
+#breaksign,
+#tkpm {
+    height: 100%;
+    display: inline-block;
     color: var(--bgColor);
-    background-color: var(--secColor);
 }
 
 #tkpm {
-    padding: 3px;
+    padding-left: 5px;
     padding-right: 5px;
-    color: var(--bgColor);
-    background-color: var(--secColor);
 }
 
 #procent-completed {

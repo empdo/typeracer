@@ -57,17 +57,15 @@ function resizeSidebar(textField) {
 if (localStorage.token) {
     getLoggedInUserInfo().then(data => {
         if (data) {
-            var container = document.querySelector('#unix');
+            var container = document.querySelector('#login');
 	    var bar = document.querySelector('#bottom-bar')
-            var profilePic = document.createElement('img');
-            var username = document.createElement('span');
-            profilePic.src = data['avatar_url'] + `&size=${bar.clientHeight}`;
+            var profilePic = document.querySelector('#profile-pic');
+            var username = document.querySelector('#username');
+            profilePic.src = data['avatar_url'] + `&size=${Math.floor(getComputedStyle(bar).height.slice(0, -2))}`;
+		console.log(getComputedStyle(bar).height.slice(0,-2))
             username.textContent = data['login'];
 
             container.innerHTML = '';
-            [username, profilePic].forEach(e => {
-                container.appendChild(e);
-            });
         }
     });
 }
