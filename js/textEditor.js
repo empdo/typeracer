@@ -65,7 +65,7 @@ if(localStorage.token){
 			var profilePic = document.createElement("img")	
 			var username = document.createElement("span");
 			profilePic.src = data["avatar_url"];
-			username.textContent = data["login"]
+			username.textContent = data["login"];
 
 			[profilePic, username].forEach(e => {container.appendChild(e)})
 		}
