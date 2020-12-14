@@ -35,3 +35,12 @@ async function getUserInfo(id){
 
     return {"login": userJson["login"], "avatar_url": userJson["avatar_url"]};
 }
+
+async function userToken(code){
+
+    const tokenUrl = "https://api.essung.dev/token/" + code;
+    const tokenRespons = await fetch(tokenUrl);
+    const tokenJson = await tokenRespons.json();
+
+    return tokenJson["access_token"];
+}

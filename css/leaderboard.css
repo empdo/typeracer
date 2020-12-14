@@ -4,10 +4,12 @@ body {
     align-items: center;
 }
 
-:marker {
-    position: absolute;
-    padding-top: 20px;
+li::marker {
+    display: inline-block;
+    vertical-align: middle;
+    list-style-position: inside;
 }
-
-li {
-	position: relative;
+ul {
+    list-style: none;
+    padding-left: 0;
+}

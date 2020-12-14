@@ -11,12 +11,13 @@ async function getFullLeaderboard() {
 }
 
 getFullLeaderboard().then(leaderboard => {
-	console.log(leaderboard)
+	leaderboard.sort((a, b) => {return b.cpm - a.cpm})
+
 	leaderboard.forEach(e => {
 		var liObj = document.createElement('li');
 
-		liObj.style.listStyleImage = `url(${e["avatar"]}?v=4&size=24)`;
 		liObj.textContent = `${e["name"]} - ${e['cpm']}cpm`;
+		liObj.style.listStyleImage = `url(${e["avatar"]}?v=4&size=24)`;
 		listContainer.appendChild(liObj);
 
 	})
