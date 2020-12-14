@@ -99,6 +99,7 @@ class CloseWindow extends Command {
 class Login extends Command {
     helpMsg = "Usage: authorize with github"
     extends(){
+	    console.log("e")
 	window.location.replace("https://github.com/login/oauth/authorize?client_id=9b3060d8b4ddf1f2a7b8")
     }
 }
@@ -108,7 +109,7 @@ const commands = {
     hl: new Highlightning(),
     q: new CloseWindow(),
     ls: new List(),
-    logon: new Login(),
+    login: new Login(),
 };
 
 const defaultCommand = new Command();
