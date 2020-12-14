@@ -58,17 +58,20 @@ function resizeSidebar(textField) {
     }
 }
 
-if(localStorage.token){
-	getLoggedInUserInfo().then(data => {
-		if(data){
-			var container = document.querySelector("#profile-container")
-			var profilePic = document.createElement("img")	
-			var username = document.createElement("span");
-			profilePic.src = data["avatar_url"];
-			username.textContent = data["login"];
+if (localStorage.token) {
+    getLoggedInUserInfo().then(data => {
+        if (data) {
+            var container = document.querySelector('#unix');
+            container.innerHTML = '';
+            var profilePic = document.createElement('img');
+            var username = document.createElement('span');
+            profilePic.src = data['avatar_url'] + '&size=32';
+            username.textContent = data['login'];
 
-			[profilePic, username].forEach(e => {container.appendChild(e)})
-		}
-	})
+            [username, profilePic].forEach(e => {
+                container.appendChild(e);
+            });
+        }
+    });
 }
 resizeSidebar();
