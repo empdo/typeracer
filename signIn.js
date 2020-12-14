@@ -1,5 +1,4 @@
 'use strict';
-
 var listContainer = document.querySelector('#list-container')
 
 async function getFullLeaderboard() {
@@ -22,3 +21,17 @@ getFullLeaderboard().then(leaderboard => {
 
 	})
 });
+
+if(localStorage.token){
+	getLoggedInUserInfo().then(data => {
+		if(data){
+			var container = document.querySelector("#profile-container")
+			var profilePic = document.createElement("img")	
+			var username = document.createElement("span");
+			profilePic.src = data["avatar_url"];
+			username.textContent = data["login"]
+
+			[profilePic, username].forEach(e => {container.appendChild(e)})
+		}
+	})
+}
