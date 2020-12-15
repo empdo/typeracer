@@ -56,7 +56,7 @@ function setSnippet() {
     snippet = snippet.filter(e => e);
     console.log(snippet);
 
-    if (snippet[0] !== previusSnippet[0]) {
+    if (snippet[0] !== previusSnippet) {
         snippet.forEach((e, i) => {
             var line = document.createElement('div');
             line.id = 'line' + i;
