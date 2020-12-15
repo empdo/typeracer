@@ -137,7 +137,6 @@ function compareLetter(input) {
     const currentLetter = codeWords[typedWords.length].slice(0, input.length);
 
     if (input === currentLetter) {
-        setSpeed(currentLineIndex);
         return true;
     } else {
         return false;
@@ -158,6 +157,7 @@ function displayText(completedWord, input) {
     input = input ? input : '';
 
     if (completedWord) {
+        setSpeed(currentLineIndex);
         var light = lowlight.highlight(
             currentLanguage,
             typedText + (typedText ? ' ' : '')
