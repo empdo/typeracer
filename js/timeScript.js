@@ -5,7 +5,6 @@ var amountOfCharacters = 0;
 var amountOfTokens = 0;
 
 function setSpeed(currentLineIndex) {
-    amountOfCharacters += 1;
 
     var timeDiffSek = (new Date() - timeAtStart) / 1000;
     document.getElementById('cpm').textContent =

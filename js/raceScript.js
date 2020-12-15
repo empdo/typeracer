@@ -137,6 +137,7 @@ function compareLetter(input) {
     const currentLetter = codeWords[typedWords.length].slice(0, input.length);
 
     if (input === currentLetter) {
+	amountOfCharacters += 1;
         return true;
     } else {
         return false;
