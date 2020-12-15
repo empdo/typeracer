@@ -9,7 +9,8 @@
     caret-color: white;
     outline: none;
 
-    
+    width: 100%;
+
     left: 0;
     right: 0;
 
@@ -20,7 +21,7 @@
     color: #ffffff5b;
 }
 
-.hlTypedText-line{
+.hlTypedText-line {
     color: #afb4b3;
 }
 
@@ -33,7 +34,6 @@
     background-color: darkred;
 }
 
-
-pre{
+pre {
     margin: 0;
 }

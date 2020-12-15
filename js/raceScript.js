@@ -6,6 +6,7 @@ var code = '';
 var snippets;
 var currentLineIndex = 0;
 var nextLineIndex = 0;
+var snippet;
 
 /**
  * @type {String[]}
@@ -35,6 +36,7 @@ function loadSnippets(lang) {
 }
 
 function setSnippet() {
+    var previusSnippet = snippet ? snippet[0] : "";
     var textField = document.querySelector('.text-field');
     var childrenToRemove = []; //tar man bort dom dirket kommer en skippas
     textField.childNodes.forEach(e => {
@@ -50,11 +52,11 @@ function setSnippet() {
     currentLineIndex = 0;
     nextLineIndex = 0;
 
-    var snippet = getRandom(snippets).snippet.split('\n');
+    snippet = getRandom(snippets).snippet.split('\n');
     snippet = snippet.filter(e => e);
     console.log(snippet);
 
-    if (snippet != document.querySelector('.text-field').textContent) {
+    if (snippet[0] !== previusSnippet[0]) {
         snippet.forEach((e, i) => {
             var line = document.createElement('div');
             line.id = 'line' + i;
@@ -125,7 +127,6 @@ function compareInput() {
     var textToCompare = typedWords[currentWordIndex];
 
     const isCorrect = codeWords[currentWordIndex] == textToCompare;
-    console.log(codeWords[currentWordIndex], textToCompare);
     if (!isCorrect) {
         typedWords.pop(currentWordIndex);
     }
@@ -178,7 +179,6 @@ function displayText(completedWord, input) {
                 : document.getElementById('indent' + nextLineIndex).offsetWidth;
         document.querySelector('.input-field').style.left =
             objToOffset + 'px';
-	console.log(objToOffset, objToOffset.offsetWidth)
         document.querySelector('.input-field').style.top =
             nextLineIndex * 23 + 'px';
 
