@@ -36,7 +36,7 @@ function loadSnippets(lang) {
 }
 
 function setSnippet() {
-    var previusSnippet = snippet ? snippet[0] : "";
+    var previusSnippet = snippet ? snippet[0] : '';
     var textField = document.querySelector('.text-field');
     var childrenToRemove = []; //tar man bort dom dirket kommer en skippas
     textField.childNodes.forEach(e => {
@@ -87,7 +87,7 @@ function setSnippet() {
             textField.append(line);
         });
 
-        resizeSidebar(document.querySelector(".text-field"));
+        resizeSidebar(document.querySelector('.text-field'));
 
         var hlTypedText = document.getElementById(
             'hlTypedText-line' + currentLineIndex
@@ -97,6 +97,8 @@ function setSnippet() {
         codeWords = code.split(' ');
         typedWords = [];
         hlTypedText.textContent = '';
+    }else {
+	setSnippet()
     }
     displayText(true);
 }
@@ -113,6 +115,7 @@ function handleInput(e) {
         if (compareInput()) {
             e.target.value = '';
             displayText(true);
+            setSpeed(currentLineIndex);
         }
     }
     displayText(false, e.target.value);
@@ -137,7 +140,6 @@ function compareLetter(input) {
     const currentLetter = codeWords[typedWords.length].slice(0, input.length);
 
     if (input === currentLetter) {
-	amountOfCharacters += 1;
         return true;
     } else {
         return false;
@@ -158,7 +160,6 @@ function displayText(completedWord, input) {
     input = input ? input : '';
 
     if (completedWord) {
-        setSpeed(currentLineIndex);
         var light = lowlight.highlight(
             currentLanguage,
             typedText + (typedText ? ' ' : '')
@@ -176,10 +177,10 @@ function displayText(completedWord, input) {
         );
         var objToOffset =
             hlTypedText.offsetWidth > 0 //TODO: GÖR EN EGEN JÄVLA FUNktion för der så man slipper skrica om hltypedtext
-                ? hlTypedText.offsetWidth + document.getElementById('indent' + nextLineIndex).offsetWidth
+                ? hlTypedText.offsetWidth +
+                  document.getElementById('indent' + nextLineIndex).offsetWidth
                 : document.getElementById('indent' + nextLineIndex).offsetWidth;
-        document.querySelector('.input-field').style.left =
-            objToOffset + 'px';
+        document.querySelector('.input-field').style.left = objToOffset + 'px';
         document.querySelector('.input-field').style.top =
             nextLineIndex * 23 + 'px';
 
@@ -236,7 +237,7 @@ inputElement.addEventListener('keydown', e => {
                     nextLineIndex += 1;
                     e.target.value = '';
                     displayText(true);
-
+                    setSpeed(currentLineIndex);
                     if (
                         document.getElementById(
                             'lineContent' + (currentLineIndex + 1)
@@ -281,13 +282,13 @@ function changeMode(modeToChange) {
         cmdContainer.style.display = 'inline';
         fileContainer.style.display = 'none';
         cmdInput.focus();
-    } else if (modeToChange == 'insert'){
-	timeAtStart = new Date()	
+    } else if (modeToChange == 'insert') {
+        timeAtStart = new Date();
         document.querySelector('.input-field').focus();
-        
-	cmdContainer.style.display = 'none';
+
+        cmdContainer.style.display = 'none';
         fileContainer.style.display = 'inline';
-    }else {
+    } else {
         cmdContainer.style.display = 'none';
         fileContainer.style.display = 'inline';
     }
@@ -295,11 +296,11 @@ function changeMode(modeToChange) {
 
 document.addEventListener('keydown', e => {
     if (e.key === ':' && !mode['commandLine'] && !mode['insert']) {
-	changeMode('commandLine');
-	e.preventDefault();
+        changeMode('commandLine');
+        e.preventDefault();
     } else if (e.key === 'Escape' && !mode['normal']) {
         changeMode('normal');
-    } else if (e.key === 'i' && !mode['insert'] && !mode['commandLine']) {	
+    } else if (e.key === 'i' && !mode['insert'] && !mode['commandLine']) {
         changeMode('insert');
         e.preventDefault();
     }
@@ -313,5 +314,3 @@ inputElement.addEventListener('input', handleInput);
 
 changeMode('normal');
 console.log(inputElement);
-
-
