@@ -63,7 +63,7 @@ if (localStorage.token) {
             var username = document.querySelector('#username');
             profilePic.src = data['avatar_url'];
 
-	    profilePic.style.height = Math.floor(getComputedStyle(bar).height.slice(0, -2));
+	    profilePic.style.height = Math.floor(getComputedStyle(bar).height.slice(0, -2)) + "px";
 	    console.log(getComputedStyle(bar).height.slice(0,-2))
             username.textContent = data['login'];
 
