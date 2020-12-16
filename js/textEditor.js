@@ -61,8 +61,10 @@ if (localStorage.token) {
 	    var bar = document.querySelector('#bottom-bar')
             var profilePic = document.querySelector('#profile-pic');
             var username = document.querySelector('#username');
-            profilePic.src = data['avatar_url'] + `&size=${Math.floor(getComputedStyle(bar).height.slice(0, -2))}`;
-		console.log(getComputedStyle(bar).height.slice(0,-2))
+            profilePic.src = data['avatar_url'];
+
+	    profilePic.style.height = Math.floor(getComputedStyle(bar).height.slice(0, -2));
+	    console.log(getComputedStyle(bar).height.slice(0,-2))
             username.textContent = data['login'];
 
             container.innerHTML = '';
