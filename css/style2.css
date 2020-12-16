@@ -14,15 +14,6 @@ html {
 
 #text-editor-container {
     background-color: var(--bgColor);
-    display: grid;
-
-    grid-template-areas:
-        'top top'
-        'mid-l mid-r'
-        'bottom bottom';
-
-    grid-template-columns: auto auto;
-    grid-template-rows: auto, 3;
 }
 
 .side-bar {
@@ -42,12 +33,17 @@ html {
     position: relative;
 }
 
+#middle-part {
+    display: flex;
+}
+
 #left-side {
     grid-area: mid-l;
     display: grid;
     grid-template-areas: 'sidebar main-area';
     grid-template-columns: 1fr 99fr;
     width: 100%;
+    flex-grow: 1;
 }
 #right-side {
     display: none;
@@ -55,6 +51,7 @@ html {
     grid-template-areas: 'sidebar main-area';
     grid-template-columns: auto auto;
     width: 100%;
+    flex-grow: 1;
 }
 #help-sidebar {
     grid-area: sidebar;
