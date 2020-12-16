@@ -102,6 +102,13 @@ class Login extends Command {
 	window.location.replace(`https://github.com/login/oauth/authorize?client_id=9b3060d8b4ddf1f2a7b8&redirect_uri=${encodeURIComponent(window.location.origin + '/login.html')}`)
     }
 }
+class Leaderboard extends Command {
+    helpMsg = ""
+    execute(){
+		window.location.replace("/leaderboard.html")
+	}
+}
+
 const commands = {
     help: new HelpCommand(),
     typeracer: new TyperacerCommand(),
@@ -109,6 +116,7 @@ const commands = {
     q: new CloseWindow(),
     ls: new List(),
     login: new Login(),
+    leaderboard: new Leaderboard(),
 };
 
 const defaultCommand = new Command();
