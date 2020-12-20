@@ -12,6 +12,10 @@ getLanguages().then(data => {
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
 var availableLang = [];
 
+function getRandom(list) {
+    return list[Math.floor(Math.random() * list.length)];
+}
+
 class Command {
     helpMsg;
     constructor() {}
@@ -140,5 +144,27 @@ inputForm.addEventListener('submit', e => {
     cmdInputElement.value = '';
     changeMode('normal');
 });
+
+var commandsList = document.querySelectorAll('.command');
+document.addEventListener('click', e => {
+		var eId = e.target.id;
+		var eArgs = eId.split(" ")
+		var eFinalArgs = [];
+		if (eArgs[1] === "lang"){
+				getLanguages().then(data => {
+						eFinalArgs.push(eArgs[0]);
+						eFinalArgs.push(getRandom(data));
+						console.log(eFinalArgs)
+						parseCommand(eFinalArgs.join(" "));
+				})
+		}else if(eArgs[1] === "theme"){
+				eFinalArgs.push(eArgs[0]);
+				eFinalArgs.push(getRandom(availableHl));
+				parseCommand(eFinalArgs.join(" "));
+		}else {
+				eFinalArgs = eArgs;
+				parseCommand(eFinalArgs.join(" "));
+		}
+})
 
 //TODO: om man kör multiplayer så blir det split screen, som vim

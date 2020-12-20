@@ -81,6 +81,11 @@ html {
     padding-bottom: 20px;
 }
 
+.command:hover {
+    text-decoration: underline;
+	cursor: pointer;
+}
+
 .typeracer-container {
     padding-left: 10px;
     display: none;
