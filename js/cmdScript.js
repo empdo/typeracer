@@ -42,6 +42,10 @@ class TyperacerCommand extends Command {
     helpMsg = `Usage: typeracer <${availableLang}>`;
 
     execute(args) {
+			if (args.length < 1){
+					var args = [];
+					args.push(getRandom(availableLang))
+			}
             if (availableLang.includes(args[0])) {
                 var typeracerContainer = document.querySelector(
                     '.typeracer-container'
@@ -51,8 +55,6 @@ class TyperacerCommand extends Command {
                 landingpage.style.display = 'none';
 
 		loadSnippets(args[0]);
-
-                console.log(availableLang);
     }
 }
 }
@@ -61,7 +63,10 @@ class Highlightning extends Command {
     helpMsg = 'Usage: hl <atom_one, monokai, solarized, dracul>';
 
     execute(args) {
-        if (args.length === 0 || !availableHl.includes(args[0])) {
+		if (args.length < 1){
+				args.push(getRandom(availableHl));
+		}
+        if (!availableHl.includes(args[0])) {
             helpContainer.style.display = 'grid';
             helpFileName.style.display = 'inline-block';
             helpPage.textContent = this.helpMsg;
@@ -77,7 +82,6 @@ class Highlightning extends Command {
 
 class List extends Command {
     execute(args) {
-	    console.log("hej1")
         if (args[0] === 'hl') {
             helpContainer.style.display = 'grid';
             helpFileName.style.display = 'inline-block';
@@ -126,14 +130,13 @@ const commands = {
 const defaultCommand = new Command();
 
 function parseCommand(command) {
-    const args = command.split(' '); //TODO: gp igenom och ta bort mellandslag§§
+    const args = command.split(' ')
     const mainArg = args[0];
     var commandObj = defaultCommand;
     if (mainArg in commands) {
         commandObj = commands[mainArg];
     }
     const templateName = commandObj.execute(args.slice(1));
-    //    changeCmdOutput(templateName);
 }
 var cmdInputElement = document.getElementById('cmd-input');
 var inputForm = document.getElementById('cmd-container');
@@ -147,24 +150,8 @@ inputForm.addEventListener('submit', e => {
 
 var commandsList = document.querySelectorAll('.command');
 document.addEventListener('click', e => {
-		var eId = e.target.id;
-		var eArgs = eId.split(" ")
-		var eFinalArgs = [];
-		if (eArgs[1] === "lang"){
-				getLanguages().then(data => {
-						eFinalArgs.push(eArgs[0]);
-						eFinalArgs.push(getRandom(data));
-						console.log(eFinalArgs)
-						parseCommand(eFinalArgs.join(" "));
-				})
-		}else if(eArgs[1] === "theme"){
-				eFinalArgs.push(eArgs[0]);
-				eFinalArgs.push(getRandom(availableHl));
-				parseCommand(eFinalArgs.join(" "));
-		}else {
-				eFinalArgs = eArgs;
-				parseCommand(eFinalArgs.join(" "));
+			parseCommand(e.target.dataset.command)
 		}
-})
+)
 
 //TODO: om man kör multiplayer så blir det split screen, som vim
