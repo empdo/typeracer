@@ -71,4 +71,8 @@ if (localStorage.token) {
         }
     });
 }
-resizeSidebar();
+
+document.addEventListener("DOMContentLoaded", () => {
+		resizeSidebar();
+})
+
