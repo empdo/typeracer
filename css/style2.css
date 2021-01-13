@@ -49,7 +49,7 @@ html {
     display: none;
     grid-area: mid-r;
     grid-template-areas: 'sidebar main-area';
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 99fr;
     width: 100%;
     flex-grow: 1;
 }
@@ -59,6 +59,8 @@ html {
 #help-page {
     grid-area: main-area;
     padding-right: 15px;
+	width: 100%;
+	justify-self: start;
 }
 
 #landing-page {
