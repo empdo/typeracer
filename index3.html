@@ -23,6 +23,7 @@
             <div id="top-bar">
                 <span id="file-name-t">Typeracer.js</span>
                 <span id="help-file-name">Help.txt</span>
+				<span class="command" id="close-button"data-command="q">X</span><br>
 		<div id="profile-container"></div>
             </div>
 	    <div id="middle-part">
@@ -43,11 +44,13 @@
 						<span></span></br>
 						<span class="command" data-command="leaderboard">type :lederboard to view the leaderboard,</br> login for your best try apear on it</span><br>
 						<span class="command" data-command="login">type :login to authorize yourself with Github</span><br>
-						<span class="command" data-command="q">type :q to close a help window</span><br>
+						<span class="command" data-command="q">type :q to close a help window or to quit a race</span><br>
 				    </div>
 
 			    </div>
 			    <div class="typeracer-container">
+						
+
 				    <div class="text-container">
 					    <div class="input-field-container">
 						    <input class="input-field" type="text" onclick="changeMode('insert')" autofocus/>

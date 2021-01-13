@@ -55,6 +55,7 @@ class TyperacerCommand extends Command {
                 landingpage.style.display = 'none';
 
 		loadSnippets(args[0]);
+		document.querySelector("#close-button").style.display = "inline-block";
     }
 }
 }
@@ -93,6 +94,8 @@ class List extends Command {
             helpPage.textContent = new TyperacerCommand().helpMsg;
             resizeSidebar();
 	}
+
+		document.querySelector("#close-button").style.display = "inline-block";
     }
 }
 
@@ -100,8 +103,20 @@ class CloseWindow extends Command {
     helpMsg = 'closes stuff';
 
     execute(args) {
+		var landingpage = document.querySelector('#landing-page');
+		var typeracerContainer = document.querySelector(
+			'.typeracer-container'
+		);
+
+		if (landingpage.style.display === "none"){
+				landingpage.style.display = "grid";
+				typeracerContainer.style.display = "none"
+
+				resizeSidebar();
+		}
         helpContainer.style.display = 'none';
         helpFileName.style.display = 'none';
+		document.querySelector("#close-button").style.display = "none";
     }
 }
 class Login extends Command {
@@ -113,7 +128,7 @@ class Login extends Command {
 class Leaderboard extends Command {
     helpMsg = ""
     execute(){
-		window.location.replace("/leaderboard.html")
+		window.location.assign("/leaderboard.html")
 	}
 }
 

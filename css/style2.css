@@ -59,6 +59,7 @@ html {
 #help-page {
     grid-area: main-area;
     padding-right: 15px;
+	padding-left: 10px;
 	width: 100%;
 	justify-self: start;
 }
@@ -89,6 +90,7 @@ html {
 }
 
 .typeracer-container {
+    position: relative;
     padding-left: 10px;
     display: none;
     justify-self: left;
@@ -226,6 +228,13 @@ img {
 #procent-completed {
     padding-left: 5px;
     padding-right: 0px;
+}
+
+#close-button {
+		display: none;
+		grid-area: right;
+		justify-self: end;
+		padding-right: 15px;
 }
 
 /*TODO: lägg till colla saker som t.ex wpm lpm i baren längst ner*/
