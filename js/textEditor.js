@@ -2,6 +2,7 @@
 
 var hasEventListner = false;
 var themeTag = document.getElementById('syntax-hl');
+var bar = document.querySelector('#bottom-bar')
 var rows = 0;
 
 themeTag.setAttribute(
@@ -11,7 +12,6 @@ themeTag.setAttribute(
 
 function resizeSidebar(textField) {
     rows = textField ? textField.childNodes.length : rows;
-    console.log(rows);
 
     var sideBar = document.querySelectorAll('.side-bar');
     sideBar.forEach(e => {
@@ -19,7 +19,6 @@ function resizeSidebar(textField) {
     });
     sideBar.forEach(e => {
         if (window.getComputedStyle(e.parentNode).display !== 'none') {
-            console.log('he');
             var i = 1;
             while (notOverflowing()) {
                 var number = document.createElement('span');
@@ -44,7 +43,7 @@ function resizeSidebar(textField) {
     });
     function notOverflowing() {
         return (
-            document.getElementById('text-editor-container').scrollHeight <
+            document.getElementById('text-editor-container').scrollHeight<
             window.innerHeight
         );
     }
@@ -58,7 +57,6 @@ if (localStorage.token) {
     getLoggedInUserInfo().then(data => {
         if (data) {
             var container = document.querySelector('#login');
-	    var bar = document.querySelector('#bottom-bar')
             var profilePic = document.querySelector('#profile-pic');
             var username = document.querySelector('#username');
             profilePic.src = data['avatar_url'];
@@ -72,7 +70,7 @@ if (localStorage.token) {
     });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-		resizeSidebar();
-})
+window.addEventListener("load", () => {
+    resizeSidebar(document.querySelector(".input-field"))
+});
 
