@@ -100,7 +100,7 @@ class List extends Command {
 }
 
 class CloseWindow extends Command {
-    helpMsg = 'closes stuff';
+    helpMsg = 'closes helppage or current game';
 
     execute(args) {
 		var landingpage = document.querySelector('#landing-page');
@@ -112,7 +112,8 @@ class CloseWindow extends Command {
 				landingpage.style.display = "grid";
 				typeracerContainer.style.display = "none"
 
-				resizeSidebar();
+                resizeSidebar(document.querySelector(".input-field"));
+
 		}
         helpContainer.style.display = 'none';
         helpFileName.style.display = 'none';

@@ -71,6 +71,5 @@ if (localStorage.token) {
 }
 
 window.addEventListener("load", () => {
-    resizeSidebar(document.querySelector(".input-field"))
+    resizeSidebar(document.querySelector(".input-field"));
 });
-
