@@ -10,6 +10,7 @@ getLanguages().then(data => {
 })
 
 const availableHl = ['atom_one', 'dracula', 'monokai', 'solarized'];
+var currentHl =  0;
 var availableLang = [];
 
 function getRandom(list) {
@@ -65,8 +66,11 @@ class Highlightning extends Command {
 
     execute(args) {
 		if (args.length < 1){
-				args.push(getRandom(availableHl));
+            currentHl += 1;
+            args = [availableHl[currentHl % availableHl.length]];
 		}
+
+        console.log(args)
         if (!availableHl.includes(args[0])) {
             helpContainer.style.display = 'grid';
             helpFileName.style.display = 'inline-block';
