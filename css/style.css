@@ -1,7 +1,6 @@
 body {
     color: grey;
     font-size: medium;
-
 }
 
 * {
@@ -36,7 +35,6 @@ p {
     color: white;
 }
 
-
 #cmd-l {
     color: #38960c;
     font-weight: 800;
@@ -59,11 +57,11 @@ p {
     background-color: transparent;
     border: transparent;
     color: #ffffffab;
+    outline: none;
 
     font-size: medium;
     padding: 0;
 }
-
 
 #cmd-output-container {
     padding-top: 5px;
@@ -96,7 +94,7 @@ p {
     justify-items: center;
 }
 
-.text-field{
+.text-field {
 }
 
 .input-field {
@@ -113,8 +111,6 @@ p {
     padding: 0;
 }
 
-
-
 .correctLetter {
     color: #206600;
 }
@@ -127,9 +123,6 @@ p {
 pre {
     margin: 0px;
 }
-
-
-
 
 .dropdown-btn {
     background-color: #206600;
@@ -171,7 +164,7 @@ pre {
 }
 
 .dropdown-content a:hover {
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
 }
 
 .dropdown-content-hl a {
@@ -183,7 +176,7 @@ pre {
 }
 
 .dropdown-content-hl a:hover {
-    background-color: #f1f1f1
+    background-color: #f1f1f1;
 }
 
 .dropdown:hover .dropdown-content-hl {
