@@ -59,9 +59,9 @@ html {
 #help-page {
     grid-area: main-area;
     padding-right: 15px;
-	padding-left: 10px;
-	width: 100%;
-	justify-self: start;
+    padding-left: 10px;
+    width: 100%;
+    justify-self: start;
 }
 
 #landing-page {
@@ -86,7 +86,7 @@ html {
 
 .command:hover {
     text-decoration: underline;
-	cursor: pointer;
+    cursor: pointer;
 }
 
 .typeracer-container {
@@ -152,6 +152,7 @@ html {
     color: white;
     background-color: transparent;
     border: transparent;
+    outline: none;
 }
 
 #cmd-container {
@@ -231,10 +232,10 @@ img {
 }
 
 #close-button {
-		display: none;
-		grid-area: right;
-		justify-self: end;
-		padding-right: 15px;
+    display: none;
+    grid-area: right;
+    justify-self: end;
+    padding-right: 15px;
 }
 
 /*TODO: lägg till colla saker som t.ex wpm lpm i baren längst ner*/
