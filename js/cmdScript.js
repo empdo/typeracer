@@ -161,11 +161,16 @@ function parseCommand(command) {
 var cmdInputElement = document.getElementById('cmd-input');
 var inputForm = document.getElementById('cmd-container');
 
+inputForm.addEventListener("blur", e=>{
+    parseCommand("");
+})
+
 inputForm.addEventListener('submit', e => {
     e.preventDefault();
     parseCommand(cmdInputElement.value);
     cmdInputElement.value = '';
     changeMode('normal');
+
 });
 
 var commandsList = document.querySelectorAll('.command');
