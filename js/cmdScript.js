@@ -175,7 +175,7 @@ inputForm.addEventListener('submit', e => {
 
 var commandsList = document.querySelectorAll('.command');
 document.addEventListener('click', e => {
-			parseCommand(e.target.dataset.command)
+			parseCommand(e.target.dataset.command || "")
 		}
 )
 
