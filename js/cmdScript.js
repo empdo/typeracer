@@ -161,8 +161,9 @@ function parseCommand(command) {
 var cmdInputElement = document.getElementById('cmd-input');
 var inputForm = document.getElementById('cmd-container');
 
-inputForm.addEventListener("blur", e=>{
-    parseCommand("");
+inputForm.addEventListener("blur", () => {
+    cmdInputElement.value = '';
+    changeMode("normal");
 })
 
 inputForm.addEventListener('submit', e => {
