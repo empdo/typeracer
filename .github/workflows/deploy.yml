@@ -24,7 +24,7 @@ jobs:
                 port: 2022
                 username: 'git.66991d99'
                 password: ${{ secrets.ftp_password }}
-                localPath: './site/'
+                localPath: './'
                 remotePath: './webroot/'
               env:
                  user_name: "github-actions[bot]"
