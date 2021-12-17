@@ -22,7 +22,7 @@ jobs:
                 local-dir: ./webroot/
                 host: ${{ secrets.ftp_host}}
                 port: 2022
-                username: 'git.66991d99'
+                username: 'git.e8ceb7fb'
                 password: ${{ secrets.ftp_password }}
                 localPath: './'
                 remotePath: './webroot/'
