@@ -8,7 +8,7 @@ userToken(code).then(data => {
 	window.localStorage.setItem("token", data);
 	console.log(window.localStorage.token)
 
-	window.location.replace("/index3.html")
+	window.location.replace("/index.html")
 })
 
 
